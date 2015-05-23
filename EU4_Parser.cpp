@@ -3,16 +3,10 @@
 #include <algorithm>
 #include <sstream>
 
+#include "StringUtilities.h"
+
 namespace EU4 {
 namespace Parser {
-
-// Removes spaces before and after the text.
-std::string TrimWhitespace(const std::string& text)
-{
-  auto newBegin = text.find_first_not_of(" \t\n");
-  auto newEnd = text.find_last_not_of(" \t\n");
-  return text.substr(newBegin, newEnd - newBegin + 1);
-}
 
 std::unique_ptr<Item> ParseItem(const std::string& itemText)
 {

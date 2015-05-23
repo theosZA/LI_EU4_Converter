@@ -80,13 +80,19 @@
     <ClCompile Include="EU4_Country.cpp" />
     <ClCompile Include="EU4_Parser.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
+    <ClCompile Include="EU4_ProvinceCollection.cpp" />
+    <ClCompile Include="FileUtilities.cpp" />
     <ClCompile Include="LI_EU4_Converter.cpp" />
+    <ClCompile Include="StringUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Country.h" />
     <ClInclude Include="EU4_Parser.h" />
     <ClInclude Include="EU4_Province.h" />
+    <ClInclude Include="EU4_ProvinceCollection.h" />
+    <ClInclude Include="FileUtilities.h" />
+    <ClInclude Include="StringUtilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

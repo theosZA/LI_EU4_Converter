@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 #include "EU4_Country.h"
-#include "EU4_Province.h"
+#include "EU4_ProvinceCollection.h"
 
 const std::string& MakeFolder(const std::string& newPath)
 {
@@ -63,16 +63,15 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
     testCountry.WriteLocalisation(localisationCountriesFile);
   }
 
-  std::ifstream sjaellandSourceFile(eu4Path + "\\history\\provinces\\12-Sjaelland.txt");
-  EU4::Province sjaelland(12, "Sjaelland", sjaellandSourceFile);
-  sjaelland.ResetOwner(testCountry.GetTag());
+  std::set<int> provinceIDs;
+  for (int i = 1; i <= 100; ++i)
+    provinceIDs.insert(i);
+  EU4::ProvinceCollection provinces(provinceIDs, eu4Path + "\\history\\provinces");
 
-  {
-    std::ofstream provinceFile(historyProvincesPath + '\\' + std::to_string(sjaelland.GetID()) + '-' + sjaelland.GetName() + ".txt");
-    sjaelland.WriteHistory(provinceFile,
-        [&](const std::string& tag)
-        { // Only 1 country so need to check the tag.
-          return testCountry.GetName(); 
-        });
-  }
+  provinces.ResetOwnerForAllProvinces(testCountry.GetTag());
+  provinces.WriteHistoryToFiles(historyProvincesPath,
+      [&](const std::string& tag)
+      { // Only 1 country so need to check the tag.
+        return testCountry.GetName(); 
+      });
 }
