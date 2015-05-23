@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 #include "EU4_Country.h"
+#include "EU4_Province.h"
 
 const std::string& MakeFolder(const std::string& newPath)
 {
@@ -12,7 +13,7 @@ const std::string& MakeFolder(const std::string& newPath)
   return newPath;
 }
 
-void Converter::CreateMod(const std::string& name, const std::string& modPath)
+void Converter::CreateMod(const std::string& name, const std::string& modPath, const std::string& eu4Path)
 {
   std::string convertedModPath = MakeFolder(modPath + '\\' + name);
   std::string commonPath = MakeFolder(convertedModPath + "\\common");
@@ -20,6 +21,7 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath)
   std::string commonCountriesPath = MakeFolder(commonPath + "\\countries");
   std::string historyPath = MakeFolder(convertedModPath + "\\history");
   std::string historyCountriesPath = MakeFolder(historyPath + "\\countries");
+  std::string historyProvincesPath = MakeFolder(historyPath + "\\provinces");
   std::string localisationPath = MakeFolder(convertedModPath + "\\localisation");
 
   EU4::Country testCountry;
@@ -61,29 +63,16 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath)
     testCountry.WriteLocalisation(localisationCountriesFile);
   }
 
-  // Force this country to show up in Uppland
+  std::ifstream sjaellandSourceFile(eu4Path + "\\history\\provinces\\12-Sjaelland.txt");
+  EU4::Province sjaelland(12, "Sjaelland", sjaellandSourceFile);
+  sjaelland.ResetOwner(testCountry.GetTag());
+
   {
-    std::string historyProvincesPath = MakeFolder(historyPath + "\\provinces");
-    std::ofstream provinceFile(historyProvincesPath + "\\1-Uppland.txt");
-    provinceFile << "#Uppland, contains Stockholm, Uppsala & Nyköping.\n\n"
-                 << "owner = " << testCountry.GetTag() << " # " << testCountry.GetName() << '\n'
-                 << "controller = " << testCountry.GetTag() << " # " << testCountry.GetName() << '\n'
-                 << "add_core = " << testCountry.GetTag() << " # " << testCountry.GetName() << '\n'
-                 << "culture = swedish\n"
-                 << "religion = catholic\n"
-                 << "hre = no\n"
-                 << "base_tax = 5\n"
-                 << "trade_goods = grain\n"
-                 << "manpower = 3\n"
-                 << "fort1 = yes\n"
-                 << "capital = \"Stockholm\"\n"
-                 << "is_city = yes\n"
-                 << "temple = yes\n"
-                 << "workshop = yes\n"
-                 << "marketplace = yes\n"
-                 << "discovered_by = eastern\n"
-                 << "discovered_by = western\n"
-                 << "discovered_by = muslim\n"
-                 << "discovered_by = ottoman\n";
+    std::ofstream provinceFile(historyProvincesPath + '\\' + std::to_string(sjaelland.GetID()) + '-' + sjaelland.GetName() + ".txt");
+    sjaelland.WriteHistory(provinceFile,
+        [&](const std::string& tag)
+        { // Only 1 country so need to check the tag.
+          return testCountry.GetName(); 
+        });
   }
 }

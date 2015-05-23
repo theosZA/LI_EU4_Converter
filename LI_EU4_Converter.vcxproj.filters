@@ -4,9 +4,13 @@
     <ClCompile Include="LI_EU4_Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
     <ClCompile Include="Converter.cpp" />
+    <ClCompile Include="EU4_Province.cpp" />
+    <ClCompile Include="EU4_Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
     <ClInclude Include="Converter.h" />
+    <ClInclude Include="EU4_Province.h" />
+    <ClInclude Include="EU4_Parser.h" />
   </ItemGroup>
 </Project>

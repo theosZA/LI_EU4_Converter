@@ -10,7 +10,9 @@ int main(int argc, const char* argv[])
     std::cout << "Start\n";
 
     Converter converter;
-    converter.CreateMod("TestMod9000", "G:\\SteamLibrary\\SteamApps\\common\\Europa Universalis IV\\mod");
+    converter.CreateMod("TestMod9000",
+                        "G:\\SteamLibrary\\SteamApps\\common\\Europa Universalis IV\\mod",
+                        "G:\\SteamLibrary\\SteamApps\\common\\Europa Universalis IV");
 
     std::cout << "Done\n";
   }

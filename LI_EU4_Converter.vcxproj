@@ -78,11 +78,15 @@
   <ItemGroup>
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
+    <ClCompile Include="EU4_Parser.cpp" />
+    <ClCompile Include="EU4_Province.cpp" />
     <ClCompile Include="LI_EU4_Converter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Country.h" />
+    <ClInclude Include="EU4_Parser.h" />
+    <ClInclude Include="EU4_Province.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
