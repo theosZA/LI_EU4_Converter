@@ -21,6 +21,7 @@ ProvinceCollection::ProvinceCollection(const std::set<int> provinceIDs, const st
         auto provinceName = TrimWhitespace(provinceFileName.substr(splitPos + 1));
         std::ifstream provinceSourceFile(provincePath + '\\' + provinceFileName);
         provinces.emplace_back(provinceID, provinceName, provinceSourceFile);
+        provinceHistoryFileNames[provinceID] = provinceFileName;
       }
     }
   }
@@ -36,8 +37,13 @@ void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const std:
 {
   for (const auto& province : provinces)
   {
-    std::ofstream provinceFile(path + '\\' + std::to_string(province.GetID()) + '-' + province.GetName() + ".txt");
-    province.WriteHistory(provinceFile, tagToName);
+    auto findIter = provinceHistoryFileNames.find(province.GetID());
+    if (findIter != provinceHistoryFileNames.end())
+    {
+      auto provinceFileName = findIter->second;
+      std::ofstream provinceFile(path + '\\' + provinceFileName);
+      province.WriteHistory(provinceFile, tagToName);
+    }
   }
 }
 

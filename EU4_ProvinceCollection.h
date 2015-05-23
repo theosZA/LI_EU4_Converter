@@ -1,4 +1,5 @@
 #include <functional>
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -24,6 +25,7 @@ class ProvinceCollection
 
   private:
     std::vector<Province> provinces;
+    std::map<int, std::string> provinceHistoryFileNames;
 };
 
 } // EU4
