@@ -9,7 +9,7 @@ Country::Country()
 void Country::WriteCommonInfo(std::ostream& out) const
 {
   out << "# Country name: " << name << "\n\n"
-      << "graphical culture = westerngfx\n\n"
+      << "graphical_culture = westerngfx\n\n"
       << "color = { 255 192 192 }\n";
 }
 
