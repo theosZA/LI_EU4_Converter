@@ -2,5 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="LI_EU4_Converter.cpp" />
+    <ClCompile Include="EU4_Country.cpp" />
+    <ClCompile Include="Converter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EU4_Country.h" />
+    <ClInclude Include="Converter.h" />
   </ItemGroup>
 </Project>
