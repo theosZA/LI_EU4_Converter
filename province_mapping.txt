@@ -1,0 +1,273 @@
+# North Sea
+1=370 # Reykjavik
+2=371 # Akureyri
+3=1104 # Eiriksfjord
+4=1105 # Vestbygden 
+18=1979 # Faroe Islands
+19=1978 # Shetland
+20=369 # Orkney
+
+# Ireland
+7,6,5=372 # Ulster
+16,8=373 # Meath
+10,9=376 # Connaught
+12,11=375 # Munster(IRE)
+13,17,14,15=374 # Leinster
+
+# Scotland
+22,24,25,21=252 # Highlands
+23=253 # Western Isles
+28,27=251 # Aberdeen
+29,30,26=250 # Fife
+32,33=248 # Lothian
+35,34,31,36=249 # Ayrshire
+
+# England and Wales
+38,41,37=247 # Cumbria
+39,40=246 # Northumberland
+43,42=244 # Lancashire
+44=245 # Yorkshire
+45=243 # Lincoln
+47,46=1861 # Derby
+55,48,57,58=240 # Marches
+50,51,49=242 # Gwynedd
+52,54,53=241 # Glamorgan
+56,70=239 # Gloucestershire
+59,60,61=237 #  Oxfordshire
+62=1860 # Norfolk
+64,63=238 # Essex
+65,66=236 # London
+67,68=235 # Kent
+69=234 # Wessex
+74,73,72,71=233 # Cornwall
+
+# Brittany
+75=170 # Finestere
+77,76=171 # Morbihan
+79,78=169 # Armor
+80=172 # Nantes
+
+# France (excl. HRE lands)
+82,81=177 # Maine
+82,90,85=1879 # Alencon - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+91,90,92,83=184 # Orleanais
+84=168 # Normandie
+86,85=167 # Caux
+113,87=89 # Picardie
+89,88=183 # Ile=de=France
+93=179 # Berry
+94=178 # Anjou
+97,96,95=180 # Poitou
+98,102,101=195 # Limousin
+100,99=194 # Perigord
+103,132=199 # Auvergne
+104=190 # Bourbon
+105=191 # Nevers
+109,106=185 # Nemours
+107=192 # Bourgogne
+110,108=186 # Champagne
+111,112=182 # Vermandois
+1550,130,131=1877 # Charolais
+134,133,135=200 # Languedoc
+136=202 # Avignon
+138,137=201 # Provence
+140,150=2753 # Narbonne
+141=198 # Rouergue
+142,149=196 # Toulouse
+144,143=174 # Gascogne
+145=173 # Labourd
+147=176 # Bearn
+148=175 # Armagnac
+210=204 # Dauphine
+211=203 # Lyonnais
+
+# Spain
+151=197 # Roussilion
+152,155=212 # Girona
+153,159,154=213 # Barcelona
+156=211 # Pirineo
+157,158,162=214 # Aragon
+161,160=220 # Valencia
+163,146=210 # Nafarroa
+164=209 # Vizcaya
+166,165=2755 # Soria
+168,167=2751 # Cuenca
+169,177=2754 # La Mancha
+172,170=221 # Murcia
+171=1750 # Alicante
+175=222 # Marriya
+176,194=223 # Garnatah
+176=1748 # Jaen
+178=219 # Toledo
+179=217 # Madrid
+179=215 # Castilla la Vieja
+180=1746 # Burgos
+181=1745 # Cantabria
+182=207 # Asturias
+184,185,183=208 # Leon
+186=216 # Salamanca
+189,187,188=1747 # Caceres
+190=218 # Badajoz
+197,193,191=224 # Andalucia
+192=225 # Cordoba
+195,194=226 # Jabal Tariq - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+195,196=1749 # Cadiz
+209,208=206 # Galicia
+
+# Portugal
+199,198=230 # Algarve
+201,202,200=229 # Alentejo
+203=227 # Lisboa
+204=1851 # Coimbra
+205=228 # Beira
+206=232 # Braganca
+207=231 # Porto
+
+# Western Mediterranean
+173,174=333 # The Baleares
+267=1247 # Corsica
+271,269,268,270=127 # Sardinia
+286=126 # Malta
+
+# Italy
+255,256=104 # Lombardy
+257=101 # Liguria
+261=107 # Brescia
+262=1862 # Cremona
+263=105 # Parma
+300,264=106 # Modena
+265,266=115 # Pisa
+274,272=117 # Siena
+273=116 # Firenze
+275,295=118 # Roma
+277,276,1555=121 # Napoli
+287,278=1934 # Lucania
+280,279=123 # Calabria
+281,285=124 # Messina
+282,284,283=125 # Palermo
+288=122 # Salento
+290,291,289,292=1933 # Bari
+293=120 # Abruzzi
+294,296=119 # Ancona
+298,297=114 # Romagna
+299=113 # Ferrara
+301=109 # Mantua
+302,304=108 # Verona
+305=112 # Venezia
+306=1774 # Treviso
+
+# Swiss/Southern French HRE
+139=102 # Nice
+212=205 # Savoie
+212=1871 # Wallis
+213=1867 # Vaud
+216=165 # Bern
+248=1869 # Zurich
+249=1870 # St Gallen
+254,253=1873 # Graubunden
+260,258=103 # Piedmont
+259=1875 # Cuneo
+334=193 # Franche-Comte
+
+# Dutch/Northern French HRE
+111=181 # Rethel
+114=88 # Artois
+115=87 # Calais
+119,116=90 # Flandres
+117=1743 # Cambray
+117=91 # Hainaut
+118=1865 # Gand
+118=1744 # Anvers
+120=96 # Zelande
+121=95 # Breda
+122=92 # Brabant
+123=93 # Liege
+123=1866 # Namur
+124=94 # Luxemburg
+126,125,127=187 # Barrois
+128=189 # Lothringen
+217=1880 # Sundgau
+218=75 # Elsass
+219=188 # Metz
+223=1742 # Limbourg
+224,225=97 # Hollande
+226=98 # Utrecht
+227=100 # Friesland
+228=99 # Gelre
+230=1931 # East Friesland
+
+# Austrian/Italian HRE
+252=73 # Tirol
+303=110 # Sudtirol
+307=111 # Friuli
+307=1769 # Gorz
+308=130 # Istria
+309=129 # Krain
+310=128 # Karnten
+311=132 # Steiermark
+312=76 # Salzburg
+313=1768 # Lienz
+451,447=1770 # Ostmark
+452=133 # Linz
+453=134 # Wien
+457=1863 # Graz
+
+# German/Czech HRE
+220=1761 # Pfalz
+221=80 # Trier
+222=1878 # Aachen
+229=84 # Berg
+231=55 # Oldenburg
+232=56 # Osnabruck
+233=86 # Munster (GER)
+234=85 # Koln
+235=1760 # Koblenz - LI Mainz doesn't map well to EU4 Mainz
+236=1874 # Bremen
+236=54 # Stade
+237=1758 # Hannover
+238=57 # Braunschweig
+238=82 # Westfalen
+239=78 # Mainz - LI Mainz doesn't map well to EU4 Mainz
+239=1876 # Frankfurt
+239=83 # Nassau
+240=81 # Hessen
+240=1762 # Kassel
+240=63 # Thuringia
+241=79 # Wurzburg
+242=77 # Heidelberg
+243=71 # Ansbach
+244=1872 # Ulm
+245=74 # Baden
+246=70 # Wurtemberg
+247=72 # Breisgau
+250=69 # Konstanz
+251=68 # Memmingen
+251=1868 # Augsburg
+314=65 # Munchen
+315=67 # Nurnburg
+316=66 # Bamberg
+317=1757 # Oberpfalz
+318,446=64 # Niederbayern
+320=61 # Sachsen
+321=59 # Wittenberg
+322=62 # Leipzig
+322=58 # Anhalt
+324=53 # Luneburg
+324=52 # Altmark
+325,443=46 # Mecklenburg
+326=44 # Hamburg
+326=1857 # Lauenburg
+327=45 # Lubeck
+428,429,448=265 # Moravia
+430,319=267 # Bohmerwald
+431=266 # Bohemia
+432=1771 # Erz
+433=60 # Oberlausitz
+433=264 # Breslau
+437=1858 # Stettin
+438=49 # Neumark
+438=1763 # Niederlausitz
+439=50 # Brandenburg
+442,441,440=47 # Vorpommern
+444=51 # Ruppin
+445=1759 # Potsdam

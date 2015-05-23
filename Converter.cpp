@@ -6,6 +6,7 @@
 
 #include "EU4_Country.h"
 #include "EU4_ProvinceCollection.h"
+#include "LI_EU4_ProvinceMapping.h"
 
 const std::string& MakeFolder(const std::string& newPath)
 {
@@ -63,10 +64,8 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
     testCountry.WriteLocalisation(localisationCountriesFile);
   }
 
-  std::set<int> provinceIDs;
-  for (int i = 1; i <= 100; ++i)
-    provinceIDs.insert(i);
-  EU4::ProvinceCollection provinces(provinceIDs, eu4Path + "\\history\\provinces");
+  LI_EU4::ProvinceMapping provinceMapping(std::ifstream("province_mapping.txt"));
+  EU4::ProvinceCollection provinces(provinceMapping.GetAllEU4ProvinceIDs(), eu4Path + "\\history\\provinces");
 
   provinces.ResetOwnerForAllProvinces(testCountry.GetTag());
   provinces.WriteHistoryToFiles(historyProvincesPath,

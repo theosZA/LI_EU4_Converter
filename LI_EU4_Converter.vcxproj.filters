@@ -9,6 +9,7 @@
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
     <ClCompile Include="FileUtilities.cpp" />
     <ClCompile Include="StringUtilities.cpp" />
+    <ClCompile Include="LI_EU4_ProvinceMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -18,5 +19,6 @@
     <ClInclude Include="EU4_ProvinceCollection.h" />
     <ClInclude Include="FileUtilities.h" />
     <ClInclude Include="StringUtilities.h" />
+    <ClInclude Include="LI_EU4_ProvinceMapping.h" />
   </ItemGroup>
 </Project>

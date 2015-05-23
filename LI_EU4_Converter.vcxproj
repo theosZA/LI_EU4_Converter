@@ -83,6 +83,7 @@
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
     <ClCompile Include="FileUtilities.cpp" />
     <ClCompile Include="LI_EU4_Converter.cpp" />
+    <ClCompile Include="LI_EU4_ProvinceMapping.cpp" />
     <ClCompile Include="StringUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +93,7 @@
     <ClInclude Include="EU4_Province.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />
     <ClInclude Include="FileUtilities.h" />
+    <ClInclude Include="LI_EU4_ProvinceMapping.h" />
     <ClInclude Include="StringUtilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
