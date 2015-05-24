@@ -10,6 +10,10 @@
     <ClCompile Include="FileUtilities.cpp" />
     <ClCompile Include="StringUtilities.cpp" />
     <ClCompile Include="LI_EU4_ProvinceMapping.cpp" />
+    <ClCompile Include="CK2_Title.cpp" />
+    <ClCompile Include="CK2_Province.cpp" />
+    <ClCompile Include="CK2_ProvinceCollection.cpp" />
+    <ClCompile Include="CK2_TitleCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -20,5 +24,9 @@
     <ClInclude Include="StringUtilities.h" />
     <ClInclude Include="LI_EU4_ProvinceMapping.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="CK2_Title.h" />
+    <ClInclude Include="CK2_Province.h" />
+    <ClInclude Include="CK2_ProvinceCollection.h" />
+    <ClInclude Include="CK2_TitleCollection.h" />
   </ItemGroup>
 </Project>

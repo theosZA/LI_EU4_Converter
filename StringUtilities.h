@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 // Removes spaces before and after the text.

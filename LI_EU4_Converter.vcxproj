@@ -76,6 +76,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CK2_Province.cpp" />
+    <ClCompile Include="CK2_ProvinceCollection.cpp" />
+    <ClCompile Include="CK2_Title.cpp" />
+    <ClCompile Include="CK2_TitleCollection.cpp" />
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
     <ClCompile Include="EU4_Parser.cpp" />
@@ -87,8 +91,12 @@
     <ClCompile Include="StringUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CK2_Province.h" />
+    <ClInclude Include="CK2_ProvinceCollection.h" />
+    <ClInclude Include="CK2_TitleCollection.h" />
     <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Country.h" />
+    <ClInclude Include="CK2_Title.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="EU4_Province.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />
