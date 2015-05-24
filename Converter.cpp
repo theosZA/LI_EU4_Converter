@@ -1,18 +1,12 @@
 #include "Converter.h"
 
-#include <direct.h>
 #include <fstream>
 #include <stdexcept>
 
 #include "EU4_Country.h"
 #include "EU4_ProvinceCollection.h"
+#include "FileUtilities.h"
 #include "LI_EU4_ProvinceMapping.h"
-
-const std::string& MakeFolder(const std::string& newPath)
-{
-  _mkdir(newPath.c_str());
-  return newPath;
-}
 
 void Converter::CreateMod(const std::string& name, const std::string& modPath, const std::string& eu4Path)
 {

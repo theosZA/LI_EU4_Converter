@@ -1,5 +1,6 @@
 #include "FileUtilities.h"
 
+#include <direct.h>
 #include <windows.h>
 
 std::vector<std::string> GetAllFilesInFolder(const std::string& path)
@@ -20,4 +21,10 @@ std::vector<std::string> GetAllFilesInFolder(const std::string& path)
   }
   FindClose(findHandle);
   return fileNames;
+}
+
+const std::string& MakeFolder(const std::string& newPath)
+{
+  _mkdir(newPath.c_str());
+  return newPath;
 }
