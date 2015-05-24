@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 
-namespace EU4 {
 namespace Parser {
 
 struct Item;
@@ -24,4 +23,3 @@ struct Item
 ItemSet Parse(std::istream&);
 
 } // Parser
-} // EU4}

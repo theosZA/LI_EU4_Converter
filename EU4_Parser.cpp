@@ -1,11 +1,10 @@
-#include "EU4_Parser.h"
+#include "Parser.h"
 
 #include <algorithm>
 #include <sstream>
 
 #include "StringUtilities.h"
 
-namespace EU4 {
 namespace Parser {
 
 std::unique_ptr<Item> ParseItem(const std::string& itemText)
@@ -63,4 +62,3 @@ ItemSet Parse(std::istream& in)
 }
 
 } // Parser
-} // EU4}

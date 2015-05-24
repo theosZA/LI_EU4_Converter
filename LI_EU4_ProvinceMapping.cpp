@@ -1,6 +1,6 @@
 #include "LI_EU4_ProvinceMapping.h"
 
-#include "EU4_Parser.h"
+#include "Parser.h"
 #include "StringUtilities.h"
 
 namespace LI_EU4 {
@@ -22,7 +22,7 @@ std::vector<int> SplitIntList(std::string text)
 
 ProvinceMapping::ProvinceMapping(std::istream& in)
 {
-  auto items = EU4::Parser::Parse(in);
+  auto items = Parser::Parse(in);
   for (const auto& item : items)
     mapping[std::stoi(item->value)] = SplitIntList(item->key);
 }

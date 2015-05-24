@@ -15,10 +15,10 @@
     <ClInclude Include="EU4_Country.h" />
     <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Province.h" />
-    <ClInclude Include="EU4_Parser.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />
     <ClInclude Include="FileUtilities.h" />
     <ClInclude Include="StringUtilities.h" />
     <ClInclude Include="LI_EU4_ProvinceMapping.h" />
+    <ClInclude Include="Parser.h" />
   </ItemGroup>
 </Project>

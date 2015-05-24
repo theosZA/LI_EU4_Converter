@@ -1,6 +1,6 @@
 #include "EU4_Province.h"
 
-#include "EU4_Parser.h"
+#include "Parser.h"
 
 namespace EU4 {
 
