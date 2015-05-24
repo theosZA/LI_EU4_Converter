@@ -1,6 +1,8 @@
 #include "EU4_ProvinceCollection.h"
 
+#include <algorithm>
 #include <fstream>
+#include <stdexcept>
 
 #include "FileUtilities.h"
 #include "StringUtilities.h"
@@ -27,13 +29,26 @@ ProvinceCollection::ProvinceCollection(const std::set<int> provinceIDs, const st
   }
 }
 
+const Province& ProvinceCollection::GetProvince(int provinceID) const
+{
+  return const_cast<const Province&>(const_cast<ProvinceCollection*>(this)->GetProvince(provinceID));
+}
+
+Province& ProvinceCollection::GetProvince(int provinceID)
+{
+  auto findIter = std::find_if(provinces.begin(), provinces.end(), [=](const Province& province) { return province.GetID() == provinceID; });
+  if (findIter == provinces.end())
+    throw std::runtime_error("Failed to find EU4 province " + std::to_string(provinceID));
+  return *findIter;
+}
+
 void ProvinceCollection::ResetOwnerForAllProvinces(const std::string& tag)
 {
   for (auto& province : provinces)
     province.ResetOwner(tag);
 }
 
-void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const std::function<std::string(const std::string&)>& tagToName) const
+void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const CountryCollection& countries) const
 {
   for (const auto& province : provinces)
   {
@@ -42,7 +57,7 @@ void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const std:
     {
       auto provinceFileName = findIter->second;
       std::ofstream provinceFile(path + '\\' + provinceFileName);
-      province.WriteHistory(provinceFile, tagToName);
+      province.WriteHistory(provinceFile, countries);
     }
   }
 }

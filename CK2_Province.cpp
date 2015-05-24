@@ -1,5 +1,7 @@
 #include "CK2_Province.h"
 
+#include "CK2_TitleCollection.h"
+
 namespace CK2 {
 
 Province::Province(const Parser::Item& provinceItem)
@@ -14,8 +16,16 @@ Province::Province(const Parser::Item& provinceItem)
     else if (provinceSubItem->key == "religion")
       religion = provinceSubItem->value;
     else if (provinceSubItem->key.size() >= 2 && provinceSubItem->key[0] == 'b' && provinceSubItem->key[1] == '_')
-      baronyLevelTitles.insert(provinceSubItem->key);
+      baronyLevelTitles.push_back(provinceSubItem->key);
   }
+}
+
+std::string Province::GetTopLevelTitle(const TitleCollection& titles) const
+{
+  if (baronyLevelTitles.empty())
+    return "";
+
+  return titles.GetTopLevelLiege(baronyLevelTitles.front());
 }
 
 } // CK2

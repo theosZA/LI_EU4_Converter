@@ -82,6 +82,8 @@
     <ClCompile Include="CK2_TitleCollection.cpp" />
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
+    <ClCompile Include="EU4_CountryCollection.cpp" />
+    <ClCompile Include="LI_EU4_TitleCountryMapping.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
@@ -97,6 +99,8 @@
     <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Country.h" />
     <ClInclude Include="CK2_Title.h" />
+    <ClInclude Include="EU4_CountryCollection.h" />
+    <ClInclude Include="LI_EU4_TitleCountryMapping.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="EU4_Province.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />

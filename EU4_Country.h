@@ -9,8 +9,7 @@ namespace EU4 {
 class Country
 {
   public:
-    // Default constructor for testing creates a made-up country of Testonia.
-    Country();
+    Country(std::string tag, std::string name, std::string adjective);
 
     // Returns this country's tag.
     const std::string& GetTag() const { return tag; }

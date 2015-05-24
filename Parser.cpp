@@ -50,11 +50,15 @@ ItemSet Parse(std::istream& in)
     openBraces -= std::count(currentLine.begin(), currentLine.end(), '}');
     if (openBraces <= 0)
     {
-      auto parsedItem = ParseItem(currentItem);
-      if (parsedItem)
-        items.push_back(std::move(parsedItem));
-      currentItem.clear();
-      openBraces = 0;
+      auto lastCharPos = currentItem.find_last_not_of(" \t");
+      if (lastCharPos != std::string::npos && currentItem[lastCharPos] != '=')
+      {
+        auto parsedItem = ParseItem(currentItem);
+        if (parsedItem)
+          items.push_back(std::move(parsedItem));
+        currentItem.clear();
+        openBraces = 0;
+      }
     }
   }
 

@@ -8,6 +8,8 @@
 
 namespace EU4 {
 
+class CountryCollection;
+
 // A settled province in EU4.
 class Province
 {
@@ -23,7 +25,7 @@ class Province
     const std::string& GetName() const { return name; }
 
     // Writes the province's history including current situation such as current owner and religion.
-    void WriteHistory(std::ostream&, const std::function<std::string(const std::string&)>& tagToName) const;
+    void WriteHistory(std::ostream&, const CountryCollection&) const;
 
   private:
     int id;

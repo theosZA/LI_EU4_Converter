@@ -5,10 +5,11 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "EU4_Country.h"
+#include "EU4_CountryCollection.h"
 #include "EU4_ProvinceCollection.h"
 #include "FileUtilities.h"
 #include "LI_EU4_ProvinceMapping.h"
+#include "LI_EU4_TitleCountryMapping.h"
 #include "Parser.h"
 
 void Converter::ReadSave(const std::string& saveFileName)
@@ -31,6 +32,20 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
 {
   std::cout << "Creating mod\n";
 
+  std::cout << "Reading province mapping\n";
+  LI_EU4::ProvinceMapping provinceMapping(std::ifstream("province_mapping.txt"));
+  
+  std::cout << "Reading EU4 provinces\n";
+  EU4::ProvinceCollection destProvinces(provinceMapping.GetAllEU4ProvinceIDs(), eu4Path + "\\history\\provinces");
+
+  std::cout << "Creating EU4 countries\n";
+  EU4::CountryCollection countries;
+  LI_EU4::TitleCountryMapping countryMapping(*sourceTitles, countries);
+
+  std::cout << "Converting provinces to EU4\n";
+  provinceMapping.ConvertProvinces(*sourceProvinces, *sourceTitles, countryMapping, destProvinces);
+
+  std::cout << "Creating mod folders\n";
   std::string convertedModPath = MakeFolder(modPath + '\\' + name);
   std::string commonPath = MakeFolder(convertedModPath + "\\common");
   std::string tagsPath = MakeFolder(commonPath + "\\country_tags");
@@ -40,8 +55,7 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
   std::string historyProvincesPath = MakeFolder(historyPath + "\\provinces");
   std::string localisationPath = MakeFolder(convertedModPath + "\\localisation");
 
-  EU4::Country testCountry;
-
+  std::cout << "Writing mod file\n";
   {
     std::ofstream modFile(modPath + '\\' + name + ".mod");
     modFile << "name=\"" << name << "\"\n"
@@ -50,42 +64,18 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
             << "supported_version = 1.11\n";
   }
 
-  {
-    std::ofstream tagsFile(tagsPath + "\\01_country_tags.txt");
-    if (!tagsFile)
-      throw std::runtime_error("Error creating tags file");
-    tagsFile << testCountry.GetTag() << " = " << "countries/" << testCountry.GetName() << ".txt\n";
-  }
+  std::cout << "Writing country tags file\n";
+  countries.WriteTags(tagsPath + "\\01_country_tags.txt");
 
-  {
-    std::ofstream commonFile(commonCountriesPath + '\\' + testCountry.GetName() + ".txt");
-    if (!commonFile)
-      throw std::runtime_error("Error creating common country file for country " + testCountry.GetName());
-    testCountry.WriteCommonInfo(commonFile);
-  }
+  std::cout << "Writing country common info files\n";
+  countries.WriteCommonInfo(commonCountriesPath);
 
-  {
-    std::ofstream historyFile(historyCountriesPath + '\\' + testCountry.GetTag() + " - " + testCountry.GetName() + ".txt");
-    if (!historyFile)
-      throw std::runtime_error("Error creating common history file for country " + testCountry.GetName());
-    testCountry.WriteHistory(historyFile);
-  }
+  std::cout << "Writing country history files\n";
+  countries.WriteHistory(historyCountriesPath);
 
-  {
-    std::ofstream localisationCountriesFile(localisationPath + '\\' + name + "_tags_l_english.yml");
-    if (!localisationCountriesFile)
-      throw std::runtime_error("Error creating countries localistion file");
-    localisationCountriesFile << "l_english:\n";
-    testCountry.WriteLocalisation(localisationCountriesFile);
-  }
+  std::cout << "Writing country localisations file\n";
+  countries.WriteLocalisation(localisationPath + '\\' + name + "_tags_l_english.yml");
 
-  LI_EU4::ProvinceMapping provinceMapping(std::ifstream("province_mapping.txt"));
-  EU4::ProvinceCollection provinces(provinceMapping.GetAllEU4ProvinceIDs(), eu4Path + "\\history\\provinces");
-
-  provinces.ResetOwnerForAllProvinces(testCountry.GetTag());
-  provinces.WriteHistoryToFiles(historyProvincesPath,
-      [&](const std::string& tag)
-      { // Only 1 country so need to check the tag.
-        return testCountry.GetName(); 
-      });
+  std::cout << "Writing province files\n";
+  destProvinces.WriteHistoryToFiles(historyProvincesPath, countries);
 }

@@ -1,5 +1,6 @@
 #include "EU4_Province.h"
 
+#include "EU4_CountryCollection.h"
 #include "Parser.h"
 
 namespace EU4 {
@@ -50,12 +51,12 @@ void Province::ResetOwner(const std::string& tag)
   coreTags.insert(tag);
 }
 
-void Province::WriteHistory(std::ostream& out, const std::function<std::string(const std::string&)>& tagToName) const
+void Province::WriteHistory(std::ostream& out, const CountryCollection& countries) const
 {
-  out << "owner = " << ownerTag << " # " << tagToName(ownerTag) << '\n'
-      << "controller = " << controllerTag << " # " << tagToName(controllerTag) << '\n';
+  out << "owner = " << ownerTag << " # " << countries.GetCountry(ownerTag).GetName() << '\n'
+      << "controller = " << controllerTag << " # " << countries.GetCountry(controllerTag).GetName() << '\n';
   for (const auto& coreTag : coreTags)
-    out << "add_core = " << coreTag << " # " << tagToName(coreTag) << '\n';
+    out << "add_core = " << coreTag << " # " << countries.GetCountry(coreTag).GetName() << '\n';
   out << "culture = " << culture << '\n'
       << "religion = " << religion << '\n'
       << "hre = no\n" // the HRE is not converted

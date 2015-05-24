@@ -1,11 +1,13 @@
 #pragma once
 
-#include <set>
 #include <string>
+#include <vector>
 
 #include "Parser.h"
 
 namespace CK2 {
+
+class TitleCollection;
 
 // Represents a CK2 province (which may include multiple holdings).
 class Province
@@ -15,12 +17,14 @@ class Province
 
     int GetID() const { return id; }
 
+    std::string GetTopLevelTitle(const TitleCollection&) const;
+
   private:
     int id;
     std::string name;
     std::string culture;
     std::string religion;
-    std::set<std::string> baronyLevelTitles;
+    std::vector<std::string> baronyLevelTitles;
 };
 
 } // CK2

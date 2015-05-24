@@ -14,6 +14,8 @@
     <ClCompile Include="CK2_ProvinceCollection.cpp" />
     <ClCompile Include="CK2_TitleCollection.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="EU4_CountryCollection.cpp" />
+    <ClCompile Include="LI_EU4_TitleCountryMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -28,5 +30,7 @@
     <ClInclude Include="CK2_Province.h" />
     <ClInclude Include="CK2_ProvinceCollection.h" />
     <ClInclude Include="CK2_TitleCollection.h" />
+    <ClInclude Include="EU4_CountryCollection.h" />
+    <ClInclude Include="LI_EU4_TitleCountryMapping.h" />
   </ItemGroup>
 </Project>

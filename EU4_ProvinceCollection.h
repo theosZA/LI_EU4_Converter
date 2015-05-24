@@ -10,6 +10,8 @@
 
 namespace EU4 {
 
+class CountryCollection;
+
 // Holds a collection of all provinces in the EU4 map.
 class ProvinceCollection
 {
@@ -18,12 +20,15 @@ class ProvinceCollection
     // Only provinces in the given list of province IDs are included.
     ProvinceCollection(const std::set<int> provinceIDs, const std::string& provincePath);
 
+    const Province& GetProvince(int provinceID) const;
+    Province& GetProvince(int provinceID);
+
     // Sets the owner and controller of all provinces to the specified country for debugging purposes.
     // It can be used to see if there are any gaps in the coverage of the map.
     void ResetOwnerForAllProvinces(const std::string& tag);
 
     // Writes province history to files added to the given path.
-    void WriteHistoryToFiles(const std::string& path, const std::function<std::string(const std::string&)>& tagToName) const;
+    void WriteHistoryToFiles(const std::string& path, const CountryCollection&) const;
 
   private:
     std::vector<Province> provinces;

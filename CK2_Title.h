@@ -13,6 +13,7 @@ class Title
     Title(const Parser::Item& titleItem);
 
     const std::string& GetID() const { return id; }
+    const std::string& GetLiege() const { return liegeTitle; }
 
   private:
     std::string id;

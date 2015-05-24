@@ -2,8 +2,8 @@
 
 namespace EU4 {
 
-Country::Country()
-: tag("TS9"), name("Testonia"), adjective("Testonian")
+Country::Country(std::string tag, std::string name, std::string adjective)
+: tag(tag), name(name), adjective(adjective)
 {}
 
 void Country::WriteCommonInfo(std::ostream& out) const
