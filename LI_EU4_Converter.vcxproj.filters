@@ -5,7 +5,6 @@
     <ClCompile Include="EU4_Country.cpp" />
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
-    <ClCompile Include="EU4_Parser.cpp" />
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
     <ClCompile Include="FileUtilities.cpp" />
     <ClCompile Include="StringUtilities.cpp" />
@@ -14,6 +13,7 @@
     <ClCompile Include="CK2_Province.cpp" />
     <ClCompile Include="CK2_ProvinceCollection.cpp" />
     <ClCompile Include="CK2_TitleCollection.cpp" />
+    <ClCompile Include="Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />

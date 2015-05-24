@@ -82,7 +82,7 @@
     <ClCompile Include="CK2_TitleCollection.cpp" />
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
-    <ClCompile Include="EU4_Parser.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
     <ClCompile Include="FileUtilities.cpp" />
