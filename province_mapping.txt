@@ -272,3 +272,56 @@
 442,441,440=47 # Vorpommern
 444=51 # Ruppin
 445=1759 # Potsdam
+
+# Denmark
+328=1775 # Holstein
+329=13 # Schleswig
+330=15 # Midtjylland
+330=1984 # Nordjylland
+331=14 # Fyn
+332=1983 # Lolland
+332=12 # Sjaelland
+333=6 # Skane
+334=1981 # Bornholm
+335=1982 # Blekinge
+339=26 # Halland
+343=25 # Gotland
+
+# Norway
+348=16 # Bohuslan
+349,351,350=17 # Akershus
+353,352,354=24 # Agder
+355=23 # Bergenshus
+356=2752 # Sogn
+357=20 # Trondelag
+358=22 # Eidsiva
+367,365=10 # Jamtland
+368,369=21 # Halogaland
+370=315 # Finnmark
+
+# Sweden
+337,338,336=3 # Smaland
+340=7 # Vastergotland
+341,342=2 # Ostergotland
+361,344=1 # Stockholm
+345=1985 # Narke
+346,347=5 # Varmland
+359=8 # Dalaskogen
+360=4 # Bergslagen
+362=1930 # Aland
+364,363,366=9 # Halsingland
+371=18 # Lappland
+373,372=11 # Vasterbotten
+
+# Finland
+377=19 # Osterbotten
+375,374=1777 # Kola
+376=1776 # Karelia
+379,378=27 # Finland
+380=29 # Tavastland
+381=31 # Savolax
+382=30 # Viborg
+383=32 # Korela
+384=309 # Olonets
+1563=28 # Nyland
+# Neva on the boundary with Russian lands may also come from 382 (Kakisalmi) which looks much reduced with only getting Viborg
