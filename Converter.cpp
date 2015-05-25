@@ -12,23 +12,33 @@
 #include "LI_EU4_TitleCountryMapping.h"
 #include "Parser.h"
 
-void Converter::ReadSave(const std::string& saveFileName)
+void Converter::ReadSave(const std::string& saveFileName, const std::string& liModPath)
 {
   std::cout << "Reading save\n";
   auto saveItems = Parser::Parse(std::ifstream(saveFileName));
+
   std::cout << "Building source provinces\n";
   auto provinceItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "provinces"; });
   if (provinceItem == saveItems.end())
     throw std::runtime_error("Failed to find provinces entry in save game file");
   sourceProvinces.reset(new CK2::ProvinceCollection(**provinceItem));
+
   std::cout << "Building source titles\n";
   auto titleItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "title"; });
   if (titleItem == saveItems.end())
     throw std::runtime_error("Failed to find title entry in save game file");
   sourceTitles.reset(new CK2::TitleCollection(**titleItem));
+
+  std::cout << "Reading LI titles\n";
+  const std::vector<std::string> titlesFileNames { "landed_titles.txt", "mercenary_titles.txt", "religious_titles.txt", "titular_titles.txt" };
+  for (const auto& titlesFileName : titlesFileNames)
+  {
+    std::ifstream titlesFile(liModPath + "\\common\\landed_titles\\" + titlesFileName);
+    sourceTitles->UpdateTitles(Parser::Parse(titlesFile));
+  }
 }
 
-void Converter::CreateMod(const std::string& name, const std::string& modPath, const std::string& eu4Path)
+void Converter::CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& eu4Path)
 {
   std::cout << "Creating mod\n";
 
@@ -46,7 +56,7 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
   provinceMapping.ConvertProvinces(*sourceProvinces, *sourceTitles, countryMapping, destProvinces);
 
   std::cout << "Creating mod folders\n";
-  std::string convertedModPath = MakeFolder(modPath + '\\' + name);
+  std::string convertedModPath = MakeFolder(eu4ModPath + '\\' + name);
   std::string commonPath = MakeFolder(convertedModPath + "\\common");
   std::string tagsPath = MakeFolder(commonPath + "\\country_tags");
   std::string commonCountriesPath = MakeFolder(commonPath + "\\countries");
@@ -57,7 +67,7 @@ void Converter::CreateMod(const std::string& name, const std::string& modPath, c
 
   std::cout << "Writing mod file\n";
   {
-    std::ofstream modFile(modPath + '\\' + name + ".mod");
+    std::ofstream modFile(eu4ModPath + '\\' + name + ".mod");
     modFile << "name=\"" << name << "\"\n"
             << "path=\"mod/" << name << "\"\n"
             << "disable_time_widget = yes\n"

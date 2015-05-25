@@ -3,13 +3,15 @@
 #include <ostream>
 #include <string>
 
+#include "Colour.h"
+
 namespace EU4 {
 
 // A country (corresponds to a tag) in EU4.
 class Country
 {
   public:
-    Country(std::string tag, std::string name, std::string adjective);
+    Country(std::string tag, std::string name, std::string adjective, Colour colour);
 
     // Returns this country's tag.
     const std::string& GetTag() const { return tag; }
@@ -30,7 +32,7 @@ class Country
 
     // Common (some of these may be optional)
     // TBD: graphical culture
-    // TBD: colour
+    Colour colour;
     // TBD: historical idea groups? try use dynamic idea groups
     // TBD: historical units
     // TBD: monarch names

@@ -11,9 +11,6 @@ std::unique_ptr<Item> ParseItem(const std::string& itemText)
 {
   // Item is split as key = value.
   auto equalPos = itemText.find('=');
-  if (equalPos == std::string::npos)
-    // Not a proper item - ignore
-    return nullptr;
 
   std::unique_ptr<Item> item(new Item);
   item->key = TrimWhitespace(itemText.substr(0, equalPos));
@@ -34,7 +31,7 @@ ItemSet Parse(std::istream& in)
 
   std::string currentItem;
   int openBraces = 0;
-  while (!in.eof())
+  while (!in.eof() && !in.fail())
   {
     std::string currentLine;
     std::getline(in, currentLine);

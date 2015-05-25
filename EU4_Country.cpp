@@ -2,15 +2,15 @@
 
 namespace EU4 {
 
-Country::Country(std::string tag, std::string name, std::string adjective)
-: tag(tag), name(name), adjective(adjective)
+Country::Country(std::string tag, std::string name, std::string adjective, Colour colour)
+: tag(tag), name(name), adjective(adjective), colour(colour)
 {}
 
 void Country::WriteCommonInfo(std::ostream& out) const
 {
   out << "# Country name: " << name << "\n\n"
       << "graphical_culture = westerngfx\n\n"
-      << "color = { 255 192 192 }\n";
+      << "color = { " << colour << " }\n";
 }
 
 void Country::WriteHistory(std::ostream& out) const

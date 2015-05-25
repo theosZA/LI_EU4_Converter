@@ -9,9 +9,9 @@
 class Converter
 {
   public:
-    void ReadSave(const std::string& saveFileName);
+    void ReadSave(const std::string& saveFileName, const std::string& liModPath);
 
-    void CreateMod(const std::string& name, const std::string& modPath, const std::string& eu4Path);
+    void CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& eu4Path);
 
   private:
     std::unique_ptr<CK2::ProvinceCollection> sourceProvinces;

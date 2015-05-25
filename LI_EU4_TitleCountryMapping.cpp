@@ -33,8 +33,9 @@ TitleCountryMapping::TitleCountryMapping(const CK2::TitleCollection& titles, EU4
   auto topLevelTitles = titles.GetAllTopLevelTitles();
   for (const auto& titleID : topLevelTitles)
   {
+    const auto& title = titles.GetTitle(titleID);
     IncrementTag(tag);
-    EU4::Country country(tag, titleID, titleID);  // TBD: name and adjective of title, not the ID itself
+    EU4::Country country(tag, titleID, titleID, title.GetColour());  // TBD: name and adjective of title, not the ID itself
     mapping.emplace(titleID, tag);
     countries.AddCountry(std::move(country));
   }

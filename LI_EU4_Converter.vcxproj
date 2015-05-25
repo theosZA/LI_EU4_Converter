@@ -80,6 +80,7 @@
     <ClCompile Include="CK2_ProvinceCollection.cpp" />
     <ClCompile Include="CK2_Title.cpp" />
     <ClCompile Include="CK2_TitleCollection.cpp" />
+    <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
     <ClCompile Include="EU4_CountryCollection.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="CK2_Province.h" />
     <ClInclude Include="CK2_ProvinceCollection.h" />
     <ClInclude Include="CK2_TitleCollection.h" />
+    <ClInclude Include="Colour.h" />
     <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Country.h" />
     <ClInclude Include="CK2_Title.h" />
