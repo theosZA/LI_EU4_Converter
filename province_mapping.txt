@@ -161,6 +161,7 @@
 212=205 # Savoie
 212=1871 # Wallis
 213=1867 # Vaud
+215,214=166 # Waldstatte
 216=165 # Bern
 248=1869 # Zurich
 249=1870 # St Gallen
