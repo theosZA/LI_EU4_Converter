@@ -259,7 +259,7 @@
 326=44 # Hamburg
 326=1857 # Lauenburg
 327=45 # Lubeck
-428,429,448=265 # Moravia
+428,429,448,449=265 # Moravia
 430,319=267 # Bohmerwald
 431=266 # Bohemia
 432=1771 # Erz
@@ -324,4 +324,147 @@
 383=32 # Korela
 384=309 # Olonets
 1563=28 # Nyland
-# Neva on the boundary with Russian lands may also come from 382 (Kakisalmi) which looks much reduced with only getting Viborg
+
+# Novgorod and other Russian lands outside the Hordes
+382,390=33 # Neva
+385=2749 # Tikhvin
+386=310 # Novgorod
+387=1752 # Rzhev
+388,389=311 # Kholm
+390=34 # Ingermanland
+390=1961 # Ladoga
+573=1959 # Torzhok
+#...incomplete
+
+# Lithuania, Livonia and Estonia
+391=274 # Pskov
+391=1960 # Ostrov
+392=275 # Polotsk
+393=273 # Wenden
+394=1834 # Dorpt
+395=1842 # Narwa
+396,398=36 # Reval
+397=35 # Osel
+399=37 # Liefland
+400=1935 # Semgallen
+400=38 # Riga
+401=1936 # Kaunas
+401=272 # Vilnius
+402=271 # Zemaitija
+403=39 # Kurland
+407=270 # Trakai
+409=279 # Volhynia
+409=277 # Brasta
+411=269 # Palenke - LI Palenke doesn't map well to EU4 Palenke
+412=1937 # Gardinas
+530=1942 # Zhytomyr
+532=1943 # Bratslav
+533=282 # Yedisan
+534=2406 # Ingil
+534=283 # Zaporozhia
+535=1944 # Cherkasy
+536=280 # Kiev
+537=1941 # Turov
+538,408=278 # Pinsk - LI Palenke doesn't map well to EU4 Palenke
+539=276 # Minsk
+540=771 # Vitebsk
+541=293 # Smolensk
+543=297 # Bryansk
+544=292 # Mogilev
+546,545=289 # Chernigov
+547=2407 # Pereyaslavl
+566,548=290 # Poltava
+565=291 # Kharkov
+565=298 # Kursk
+567=1945 # Novgorod Seversky
+568=297 # Bryansk
+1565=770 # Braslaw
+
+# Poland and Prussia
+404=40 # Memel
+405=41 # Ostpreussen
+406=767 # Wystruc
+410,478=259 # Sandomierz
+411=257 # Warszawa
+411=260 # Lublin
+413=1938 # Wizna
+414=256 # Plock
+416,415=42 # Ermland
+417=1841 # Marienburg
+419,418=1859 # Kulm
+420=43 # Danzig
+422,427,421=255 # Kalisz
+423=1939 # Leczyca
+424,477=262 # Krakow
+425=263 # Ratibor
+426=258 # Sieradz
+435,434=254 # Poznan
+436=48 # Hinterpommern
+479=2424 # Peremyshl
+523=1756 # Bessarabia
+524=2405 # Bender
+525=268 # Moldavia
+529=261 # Ruthenia
+529=1940 # Belz
+531=281 # Podole
+
+# Hungary and Northern Balkans
+450=1772 # Pozony
+454=1864 # Somogy
+455=135 # Sopron
+456=152 # Varasd
+458=131 # Zagreb
+459,461=1826 # Lika
+460=1828 # Dunji Kraji
+462,464=136 # Dalmatia
+463=139 # Hum
+491,490,466,465=138 # Zeta - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+465=137 # Ragusa
+465=1831 # Travunia
+466=1827 # Raska
+467=140 # Bosnia
+468=1767 # Slavonia
+469,471=1954 # Torontal
+470,472=155 # Bekes
+473=153 # Pest
+474,476=154 # Szepes
+475=1953 # Szabolcs
+481,480=162 # Zemplen
+482=157 # Bihar
+483=1951 # Hunyad
+484=156 # Temes
+485=160 # Oltenia
+489=141 # Srbjia
+490=1766 # Kosovo
+492,491=143 # Albania
+526,1549=161 # Muntenia
+527=158 # Maros
+528=1952 # Maramaros
+
+# Greece
+486,520=150 # Nigbolu
+487=2746 # Vidin
+494,495,493=144 # Yanya
+496,499=1773 # Achaea
+498,497=145 # Morea
+504,503=146 # Athens
+507,506=147 # Tirhala
+508,509=148 # Selanik
+510=1853 # Manastir
+512,511=1765 # Sofya
+513=2750 # Filibe
+517=151 # Constantinople
+518,519=1764 # Kirkkilise
+521,522=159 # Silistre
+515,514=149 # Edirne
+
+# Eastern Mediterranean/Greek Islands
+493=142 # Corfu
+500,501=163 # Crete
+502=164 # Naxos
+775,777=2348 # Scio
+779=320 # Rhodes
+793,794=321 # Cyprus
+
+# Anatolia
+# 774,516= # Biga
