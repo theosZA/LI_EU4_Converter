@@ -1,9 +1,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include <vector>
 
-#include "Converter.h"
+#include "LI_EU4_World.h"
 #include "Log.h"
 
 int main(int argc, const char* argv[])
@@ -25,9 +24,8 @@ int main(int argc, const char* argv[])
 
     LOG(LogLevel::Info) << "LI->EU4 converter v0.1a";
 
-    Converter converter;
-    converter.ReadSave(liFileName, liModPath);
-    converter.CreateMod(outputName, eu4ModPath, eu4Path);
+    LI_EU4::World world(liFileName, liModPath, eu4Path);
+    world.CreateMod(outputName, eu4ModPath);
 
     LOG(LogLevel::Info) << "Done";
   }

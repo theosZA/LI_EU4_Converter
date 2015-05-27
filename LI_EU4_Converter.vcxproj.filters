@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="LI_EU4_Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
-    <ClCompile Include="Converter.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
     <ClCompile Include="FileUtilities.cpp" />
@@ -18,10 +17,12 @@
     <ClCompile Include="LI_EU4_TitleCountryMapping.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="CK2_World.cpp" />
+    <ClCompile Include="EU4_World.cpp" />
+    <ClCompile Include="LI_EU4_World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
-    <ClInclude Include="Converter.h" />
     <ClInclude Include="EU4_Province.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />
     <ClInclude Include="FileUtilities.h" />
@@ -36,5 +37,8 @@
     <ClInclude Include="LI_EU4_TitleCountryMapping.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="CK2_World.h" />
+    <ClInclude Include="EU4_World.h" />
+    <ClInclude Include="LI_EU4_World.h" />
   </ItemGroup>
 </Project>
