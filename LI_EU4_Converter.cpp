@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Converter.h"
+#include "Log.h"
 
 int main(int argc, const char* argv[])
 {
@@ -22,17 +23,17 @@ int main(int argc, const char* argv[])
     std::string eu4ModPath = eu4Path + "\\mod";
     std::string outputName = argv[4];
 
-    std::cout << "Start\n";
+    LOG(LogLevel::Info) << "LI->EU4 converter v0.1a";
 
     Converter converter;
     converter.ReadSave(liFileName, liModPath);
     converter.CreateMod(outputName, eu4ModPath, eu4Path);
 
-    std::cout << "Done\n";
+    LOG(LogLevel::Info) << "Done";
   }
   catch (std::exception& e)
   {
-    std::cerr << "Fatal error: " << e.what() << '\n';
+    LOG(LogLevel::Error) << e.what();
     return 1;
   }
 }

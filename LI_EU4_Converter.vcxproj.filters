@@ -17,6 +17,7 @@
     <ClCompile Include="EU4_CountryCollection.cpp" />
     <ClCompile Include="LI_EU4_TitleCountryMapping.cpp" />
     <ClCompile Include="Colour.cpp" />
+    <ClCompile Include="Log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -34,5 +35,6 @@
     <ClInclude Include="EU4_CountryCollection.h" />
     <ClInclude Include="LI_EU4_TitleCountryMapping.h" />
     <ClInclude Include="Colour.h" />
+    <ClInclude Include="Log.h" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 
 #include "CK2_TitleCollection.h"
 #include "EU4_CountryCollection.h"
+#include "Log.h"
 
 namespace LI_EU4 {
 
@@ -38,6 +39,7 @@ TitleCountryMapping::TitleCountryMapping(const CK2::TitleCollection& titles, EU4
     EU4::Country country(tag, titleID, titleID, title.GetColour());  // TBD: name and adjective of title, not the ID itself
     mapping.emplace(titleID, tag);
     countries.AddCountry(std::move(country));
+    LOG(LogLevel::Debug) << "CK2 title " << titleID << " converted to country tag " << tag;
   }
 }
 

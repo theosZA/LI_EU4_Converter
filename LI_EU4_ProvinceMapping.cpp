@@ -5,6 +5,7 @@
 #include "CK2_ProvinceCollection.h"
 #include "EU4_ProvinceCollection.h"
 #include "LI_EU4_TitleCountryMapping.h"
+#include "Log.h"
 #include "Parser.h"
 #include "StringUtilities.h"
 
@@ -51,6 +52,7 @@ void ProvinceMapping::ConvertProvinces(const CK2::ProvinceCollection& sourceProv
     std::string destCountryTag = countryMapping.GetCountryTag(sourceTitle);
     auto& destProvince = destProvinces.GetProvince(destProvinceID);
     destProvince.ResetOwner(destCountryTag);
+    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " from CK2 province " << sourceProvinceID << " (" << sourceTitle << " to tag " << destCountryTag << ')';
   }  
 }
 

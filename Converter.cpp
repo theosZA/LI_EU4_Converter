@@ -10,26 +10,27 @@
 #include "FileUtilities.h"
 #include "LI_EU4_ProvinceMapping.h"
 #include "LI_EU4_TitleCountryMapping.h"
+#include "Log.h"
 #include "Parser.h"
 
 void Converter::ReadSave(const std::string& saveFileName, const std::string& liModPath)
 {
-  std::cout << "Reading save\n";
+  LOG(LogLevel::Info) << "Reading save";
   auto saveItems = Parser::Parse(std::ifstream(saveFileName));
 
-  std::cout << "Building source provinces\n";
+  LOG(LogLevel::Info) << "Building source provinces";
   auto provinceItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "provinces"; });
   if (provinceItem == saveItems.end())
     throw std::runtime_error("Failed to find provinces entry in save game file");
   sourceProvinces.reset(new CK2::ProvinceCollection(**provinceItem));
 
-  std::cout << "Building source titles\n";
+  LOG(LogLevel::Info) << "Building source titles";
   auto titleItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "title"; });
   if (titleItem == saveItems.end())
     throw std::runtime_error("Failed to find title entry in save game file");
   sourceTitles.reset(new CK2::TitleCollection(**titleItem));
 
-  std::cout << "Reading LI titles\n";
+  LOG(LogLevel::Info) << "Reading LI titles";
   const std::vector<std::string> titlesFileNames { "landed_titles.txt", "mercenary_titles.txt", "religious_titles.txt", "titular_titles.txt" };
   for (const auto& titlesFileName : titlesFileNames)
   {
@@ -40,22 +41,22 @@ void Converter::ReadSave(const std::string& saveFileName, const std::string& liM
 
 void Converter::CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& eu4Path)
 {
-  std::cout << "Creating mod\n";
+  LOG(LogLevel::Info) << "Creating mod";
 
-  std::cout << "Reading province mapping\n";
+  LOG(LogLevel::Info) << "Reading province mapping";
   LI_EU4::ProvinceMapping provinceMapping(std::ifstream("province_mapping.txt"));
   
-  std::cout << "Reading EU4 provinces\n";
+  LOG(LogLevel::Info) << "Reading EU4 provinces";
   EU4::ProvinceCollection destProvinces(provinceMapping.GetAllEU4ProvinceIDs(), eu4Path + "\\history\\provinces");
 
-  std::cout << "Creating EU4 countries\n";
+  LOG(LogLevel::Info) << "Creating EU4 countries";
   EU4::CountryCollection countries;
   LI_EU4::TitleCountryMapping countryMapping(*sourceTitles, countries);
 
-  std::cout << "Converting provinces to EU4\n";
+  LOG(LogLevel::Info) << "Converting provinces to EU4";
   provinceMapping.ConvertProvinces(*sourceProvinces, *sourceTitles, countryMapping, destProvinces);
 
-  std::cout << "Creating mod folders\n";
+  LOG(LogLevel::Info) << "Creating mod folders";
   std::string convertedModPath = MakeFolder(eu4ModPath + '\\' + name);
   std::string commonPath = MakeFolder(convertedModPath + "\\common");
   std::string tagsPath = MakeFolder(commonPath + "\\country_tags");
@@ -65,7 +66,7 @@ void Converter::CreateMod(const std::string& name, const std::string& eu4ModPath
   std::string historyProvincesPath = MakeFolder(historyPath + "\\provinces");
   std::string localisationPath = MakeFolder(convertedModPath + "\\localisation");
 
-  std::cout << "Writing mod file\n";
+  LOG(LogLevel::Info) << "Writing mod file";
   {
     std::ofstream modFile(eu4ModPath + '\\' + name + ".mod");
     modFile << "name=\"" << name << "\"\n"
@@ -74,18 +75,18 @@ void Converter::CreateMod(const std::string& name, const std::string& eu4ModPath
             << "supported_version = 1.11\n";
   }
 
-  std::cout << "Writing country tags file\n";
+  LOG(LogLevel::Info) << "Writing country tags file";
   countries.WriteTags(tagsPath + "\\01_country_tags.txt");
 
-  std::cout << "Writing country common info files\n";
+  LOG(LogLevel::Info) << "Writing country common info files";
   countries.WriteCommonInfo(commonCountriesPath);
 
-  std::cout << "Writing country history files\n";
+  LOG(LogLevel::Info) << "Writing country history files";
   countries.WriteHistory(historyCountriesPath);
 
-  std::cout << "Writing country localisations file\n";
+  LOG(LogLevel::Info) << "Writing country localisations file";
   countries.WriteLocalisation(localisationPath + '\\' + name + "_tags_l_english.yml");
 
-  std::cout << "Writing province files\n";
+  LOG(LogLevel::Info) << "Writing province files";
   destProvinces.WriteHistoryToFiles(historyProvincesPath, countries);
 }
