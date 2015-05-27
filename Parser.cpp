@@ -12,8 +12,12 @@ std::unique_ptr<Item> ParseItem(const std::string& itemText)
   // Item is split as key = value.
   auto equalPos = itemText.find('=');
 
+  auto key = TrimWhitespace(itemText.substr(0, equalPos));
+  if (key.empty())
+    return nullptr; // All items must have a key.
+
   std::unique_ptr<Item> item(new Item);
-  item->key = TrimWhitespace(itemText.substr(0, equalPos));
+  item->key = std::move(key);
 
   std::string value = TrimWhitespace(itemText.substr(equalPos + 1));
   if (value.size() >= 2 && value.front() == '{' && value.back() == '}')
