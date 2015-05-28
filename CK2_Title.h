@@ -5,6 +5,10 @@
 #include "Colour.h"
 #include "Parser.h"
 
+namespace EU4 {
+class Country;
+} // EU4
+
 namespace CK2 {
 
 // Represents a CK2 landed title from baronies to empires.
@@ -15,9 +19,10 @@ class Title
 
     const std::string& GetID() const { return id; }
     const std::string& GetLiege() const { return liegeTitle; }
-    const Colour& GetColour() const { return colour; }
 
     void SetColour(Colour newColour) { colour = newColour; }
+
+    friend EU4::Country;
 
   private:
     std::string id;

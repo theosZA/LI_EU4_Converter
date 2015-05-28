@@ -2,7 +2,8 @@
 #include <stdexcept>
 #include <string>
 
-#include "LI_EU4_World.h"
+#include "CK2_World.h"
+#include "EU4_World.h"
 #include "Log.h"
 
 int main(int argc, const char* argv[])
@@ -24,8 +25,12 @@ int main(int argc, const char* argv[])
 
     LOG(LogLevel::Info) << "LI->EU4 converter v0.1a";
 
-    LI_EU4::World world(liFileName, liModPath, eu4Path);
-    world.CreateMod(outputName, eu4ModPath);
+    LOG(LogLevel::Info) << "* Building CK2 world";
+    CK2::World ck2World(liFileName, liModPath);
+    LOG(LogLevel::Info) << "* Building EU4 world";
+    EU4::World eu4World(ck2World, eu4Path);
+    LOG(LogLevel::Info) << "* Writing EU4 mod " << outputName;
+    eu4World.CreateMod(outputName, eu4ModPath);
 
     LOG(LogLevel::Info) << "Done";
   }

@@ -86,7 +86,6 @@
     <ClCompile Include="EU4_CountryCollection.cpp" />
     <ClCompile Include="EU4_World.cpp" />
     <ClCompile Include="LI_EU4_TitleCountryMapping.cpp" />
-    <ClCompile Include="LI_EU4_World.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
@@ -107,7 +106,6 @@
     <ClInclude Include="EU4_CountryCollection.h" />
     <ClInclude Include="EU4_World.h" />
     <ClInclude Include="LI_EU4_TitleCountryMapping.h" />
-    <ClInclude Include="LI_EU4_World.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="EU4_Province.h" />

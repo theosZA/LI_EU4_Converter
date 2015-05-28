@@ -1,13 +1,9 @@
 #include "LI_EU4_ProvinceMapping.h"
 
+#include <stdexcept>
 #include <string>
 
-#include "CK2_ProvinceCollection.h"
-#include "EU4_ProvinceCollection.h"
-#include "LI_EU4_TitleCountryMapping.h"
-#include "Log.h"
 #include "Parser.h"
-#include "StringUtilities.h"
 
 namespace LI_EU4 {
 
@@ -30,7 +26,7 @@ ProvinceMapping::ProvinceMapping(std::istream& in)
 {
   auto items = Parser::Parse(in);
   for (const auto& item : items)
-    mapping[std::stoi(item->value)] = SplitIntList(item->key);
+    mapping.emplace(std::stoi(item->value), SplitIntList(item->key));
 }
 
 std::set<int> ProvinceMapping::GetAllEU4ProvinceIDs() const
@@ -41,19 +37,12 @@ std::set<int> ProvinceMapping::GetAllEU4ProvinceIDs() const
   return eu4ProvinceIDs;
 }
 
-void ProvinceMapping::ConvertProvinces(const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles,
-                                       const TitleCountryMapping& countryMapping, EU4::ProvinceCollection& destProvinces) const
+const std::vector<int>& ProvinceMapping::GetCK2ProvinceIDs(int eu4ProvinceID) const
 {
-  for (const auto& mappingPair : mapping)
-  {
-    auto destProvinceID = mappingPair.first;
-    auto sourceProvinceID = mappingPair.second[0];  // For now we will just use whichever province is listed first. TBD: Use a real decision algorithm.
-    auto sourceTitle = sourceProvinces.GetProvinceTopLevelTitle(sourceProvinceID, titles);
-    std::string destCountryTag = countryMapping.GetCountryTag(sourceTitle);
-    auto& destProvince = destProvinces.GetProvince(destProvinceID);
-    destProvince.ResetOwner(destCountryTag);
-    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " from CK2 province " << sourceProvinceID << " (" << sourceTitle << " to tag " << destCountryTag << ')';
-  }  
+  auto findIter = mapping.find(eu4ProvinceID);
+  if (findIter == mapping.end())
+    throw std::runtime_error("Failed to find CK2 provinces corresponding to EU4 province " + std::to_string(eu4ProvinceID));
+  return findIter->second;  
 }
 
 } // LI_EU4

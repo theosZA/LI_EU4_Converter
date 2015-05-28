@@ -5,30 +5,19 @@
 #include <set>
 #include <vector>
 
-namespace CK2 { 
-  class ProvinceCollection; 
-  class TitleCollection;
-} // CK2
-
-namespace EU4 { 
-  class ProvinceCollection; 
-} // EU4
-
 namespace LI_EU4 {
 
-class TitleCountryMapping;
-
-// Holds a mapping between LI provinces and EU4 provinces
+// Holds a mapping between CK2 provinces and EU4 provinces
 class ProvinceMapping
 {
   public:
     // Creates a mapping from key-value pairs in the given stream.
     ProvinceMapping(std::istream&);
 
+    // Returns the IDs of all EU4 provinces mapped to from CK2 provinces.
     std::set<int> GetAllEU4ProvinceIDs() const;
-
-    // Converts all CK2 provinces provided into EU4 provinces.
-    void ConvertProvinces(const CK2::ProvinceCollection&, const CK2::TitleCollection&, const TitleCountryMapping&, EU4::ProvinceCollection&) const;
+    // Returns all CK2 provinces that map to the given EU4 province.
+    const std::vector<int>& GetCK2ProvinceIDs(int eu4ProvinceID) const;
 
   private:
     // Mapping is from EU4 province IDs to the LI province IDs which constitute each EU4 province.

@@ -19,7 +19,6 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="CK2_World.cpp" />
     <ClCompile Include="EU4_World.cpp" />
-    <ClCompile Include="LI_EU4_World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -39,6 +38,5 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="CK2_World.h" />
     <ClInclude Include="EU4_World.h" />
-    <ClInclude Include="LI_EU4_World.h" />
   </ItemGroup>
 </Project>

@@ -5,13 +5,18 @@
 
 #include "Colour.h"
 
+namespace CK2 {
+class Title;
+} // CK2
+
 namespace EU4 {
 
 // A country (corresponds to a tag) in EU4.
 class Country
 {
   public:
-    Country(std::string tag, std::string name, std::string adjective, Colour colour);
+    // Creates an EU4 country from a CK2 (top-level) title.
+    Country(const std::string& tag, const CK2::Title&);
 
     // Returns this country's tag.
     const std::string& GetTag() const { return tag; }

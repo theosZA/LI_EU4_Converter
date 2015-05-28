@@ -3,11 +3,23 @@
 #include <fstream>
 #include <stdexcept>
 
+#include "CK2_TitleCollection.h"
+#include "Log.h"
+
 namespace EU4 {
 
-void CountryCollection::AddCountry(Country&& country)
+CountryCollection::CountryCollection(const CK2::TitleCollection& titles)
 {
-  countries.emplace(country.GetTag(), std::move(country));
+  LOG(LogLevel::Info) << "Creating EU4 countries";
+  auto topLevelTitles = titles.GetAllTopLevelTitles();
+  for (const auto& titleID : topLevelTitles)
+  {
+    const auto& title = titles.GetTitle(titleID);
+    auto countryTag = titleCountryMapping.AddTitleAsNewCountry(titleID);
+    EU4::Country country(countryTag, title);
+    countries.emplace(countryTag, std::move(country));
+    LOG(LogLevel::Debug) << "CK2 title " << titleID << " converted to country tag " << countryTag;
+  }
 }
 
 const Country& CountryCollection::GetCountry(const std::string& countryTag) const
@@ -21,6 +33,16 @@ Country& CountryCollection::GetCountry(const std::string& countryTag)
   if (findIter == countries.end())
     throw std::runtime_error("Failed to find country with tag " + countryTag);
   return findIter->second;
+}
+
+const Country& CountryCollection::GetCountryByTitle(const std::string& titleID) const
+{
+  return GetCountry(titleCountryMapping.GetCountryTag(titleID));
+}
+
+Country& CountryCollection::GetCountryByTitle(const std::string& titleID)
+{
+  return GetCountry(titleCountryMapping.GetCountryTag(titleID));
 }
 
 void CountryCollection::WriteTags(const std::string& fileName) const

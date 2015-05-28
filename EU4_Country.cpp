@@ -1,9 +1,12 @@
 #include "EU4_Country.h"
 
+#include "CK2_Title.h"
+
 namespace EU4 {
 
-Country::Country(std::string tag, std::string name, std::string adjective, Colour colour)
-: tag(tag), name(name), adjective(adjective), colour(colour)
+// TBD: name and adjective should come from title
+Country::Country(const std::string& tag, const CK2::Title& title)
+: tag(tag), name(title.id), adjective(title.id), colour(title.colour)
 {}
 
 void Country::WriteCommonInfo(std::ostream& out) const

@@ -2,10 +2,6 @@
 
 #include <stdexcept>
 
-#include "CK2_TitleCollection.h"
-#include "EU4_CountryCollection.h"
-#include "Log.h"
-
 namespace LI_EU4 {
 
 // Increases tags where the last letter is a digit, the others are letters.
@@ -26,21 +22,16 @@ void IncrementTag(std::string& tag)
   throw std::runtime_error("Out of tags");
 }
 
-TitleCountryMapping::TitleCountryMapping(const CK2::TitleCollection& titles, EU4::CountryCollection& countries)
+// Create tags GA0 through ZZ9 (5200 tags)
+TitleCountryMapping::TitleCountryMapping()
+: lastTag("FZ9")
+{}
+
+std::string TitleCountryMapping::AddTitleAsNewCountry(const std::string& titleID)
 {
-  // Create tags GA0 through ZZ9 (5200 tags)
-  std::string tag = "FZ9";
-  
-  auto topLevelTitles = titles.GetAllTopLevelTitles();
-  for (const auto& titleID : topLevelTitles)
-  {
-    const auto& title = titles.GetTitle(titleID);
-    IncrementTag(tag);
-    EU4::Country country(tag, titleID, titleID, title.GetColour());  // TBD: name and adjective of title, not the ID itself
-    mapping.emplace(titleID, tag);
-    countries.AddCountry(std::move(country));
-    LOG(LogLevel::Debug) << "CK2 title " << titleID << " converted to country tag " << tag;
-  }
+  IncrementTag(lastTag);
+  mapping[titleID] = lastTag;
+  return lastTag;
 }
 
 const std::string& TitleCountryMapping::GetCountryTag(const std::string& titleID) const
