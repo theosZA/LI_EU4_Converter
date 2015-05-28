@@ -9,8 +9,13 @@ Country::Country(std::string tag, std::string name, std::string adjective, Colou
 void Country::WriteCommonInfo(std::ostream& out) const
 {
   out << "# Country name: " << name << "\n\n"
-      << "graphical_culture = westerngfx\n\n"
-      << "color = { " << colour << " }\n";
+      << "graphical_culture = westerngfx\n\n";
+
+#ifdef MONOCOLOUR_TEST
+  out << "color = { 20 20 255 }\n";
+#else
+  out << "color = { " << colour << " }\n";
+#endif
 }
 
 void Country::WriteHistory(std::ostream& out) const
