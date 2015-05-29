@@ -16,7 +16,7 @@ ProvinceCollection::ProvinceCollection(const Parser::Item& provincesItem, const 
     provinces.emplace(province.GetID(), std::move(province));
   }
 
-  auto historyFiles = GetAllFilesInFolder(historyProvincesPath);
+  auto historyFiles = FileUtilities::GetAllFilesInFolder(historyProvincesPath);
   for (const auto& historyFileName : historyFiles)
   {
     const auto& fileNameParts = SplitString(historyFileName, '-');

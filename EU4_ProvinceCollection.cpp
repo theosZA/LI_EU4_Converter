@@ -124,7 +124,7 @@ void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const Coun
 
 void ProvinceCollection::ReadProvincesFromFiles(const std::set<int>& provinceIDs, const std::string& path)
 {
-  auto provinceFileNames = GetAllFilesInFolder(path);
+  auto provinceFileNames = FileUtilities::GetAllFilesInFolder(path);
   for (const auto& provinceFileName : provinceFileNames)
   {
     int provinceID = std::stoi(provinceFileName);

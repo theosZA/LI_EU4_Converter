@@ -55,6 +55,14 @@ Country& CountryCollection::GetCountryByTitle(const std::string& titleID)
   return GetCountry(titleCountryMapping.GetCountryTag(titleID));
 }
 
+const Country* CountryCollection::GetOptionalCountryByTitle(const std::string& titleID) const
+{
+  auto countryTag = titleCountryMapping.GetOptionalCountryTag(titleID);
+  if (countryTag.empty())
+    return nullptr;
+  return &GetCountry(countryTag);
+}
+
 void CountryCollection::WriteTags(const std::string& fileName) const
 {
   std::ofstream tagsFile(fileName);

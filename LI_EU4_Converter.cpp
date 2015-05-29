@@ -31,7 +31,7 @@ int main(int argc, const char* argv[])
     LOG(LogLevel::Info) << "* Building EU4 world";
     EU4::World eu4World(ck2World, eu4Path);
     LOG(LogLevel::Info) << "* Writing EU4 mod " << outputName;
-    eu4World.CreateMod(outputName, eu4ModPath);
+    eu4World.CreateMod(outputName, eu4ModPath, liModPath);
 
     LOG(LogLevel::Info) << "Done";
   }

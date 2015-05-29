@@ -14,17 +14,19 @@ World::World(const CK2::World& source, const std::string& eu4Path)
   provinces(*source.provinces, *source.titles, countries, "province_mapping.txt", eu4Path + "\\history\\provinces")
 {}
 
-void World::CreateMod(const std::string& name, const std::string& eu4ModPath)
+void World::CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& ck2ModSubPath)
 {
   LOG(LogLevel::Info) << "Creating mod folders";
-  std::string convertedModPath = MakeFolder(eu4ModPath + '\\' + name);
-  std::string commonPath = MakeFolder(convertedModPath + "\\common");
-  std::string tagsPath = MakeFolder(commonPath + "\\country_tags");
-  std::string commonCountriesPath = MakeFolder(commonPath + "\\countries");
-  std::string historyPath = MakeFolder(convertedModPath + "\\history");
-  std::string historyCountriesPath = MakeFolder(historyPath + "\\countries");
-  std::string historyProvincesPath = MakeFolder(historyPath + "\\provinces");
-  std::string localisationPath = MakeFolder(convertedModPath + "\\localisation");
+  std::string convertedModPath = FileUtilities::MakeFolder(eu4ModPath + '\\' + name);
+  std::string commonPath = FileUtilities::MakeFolder(convertedModPath + "\\common");
+  std::string tagsPath = FileUtilities::MakeFolder(commonPath + "\\country_tags");
+  std::string commonCountriesPath = FileUtilities::MakeFolder(commonPath + "\\countries");
+  std::string historyPath = FileUtilities::MakeFolder(convertedModPath + "\\history");
+  std::string historyCountriesPath = FileUtilities::MakeFolder(historyPath + "\\countries");
+  std::string historyProvincesPath = FileUtilities::MakeFolder(historyPath + "\\provinces");
+  std::string localisationPath = FileUtilities::MakeFolder(convertedModPath + "\\localisation");
+  std::string graphicsPath = FileUtilities::MakeFolder(convertedModPath + "\\gfx");
+  std::string flagsPath = FileUtilities::MakeFolder(graphicsPath + "\\flags");
 
   LOG(LogLevel::Info) << "Writing mod file";
   {
@@ -49,6 +51,21 @@ void World::CreateMod(const std::string& name, const std::string& eu4ModPath)
 
   LOG(LogLevel::Info) << "Writing province files";
   provinces.WriteHistoryToFiles(historyProvincesPath, countries);
+
+  LOG(LogLevel::Info) << "Copying flags";
+  auto flagFiles = FileUtilities::GetAllFilesInFolder(ck2ModSubPath + "\\gfx\\flags");
+  for (const auto& flagFile : flagFiles)
+  {
+    auto extPos = flagFile.rfind('.');
+    if (extPos != std::string::npos)
+    {
+      auto title = flagFile.substr(0, extPos);
+      auto extension = flagFile.substr(extPos);
+      const auto* country = countries.GetOptionalCountryByTitle(title);
+      if (country)
+        FileUtilities::CopyFile(ck2ModSubPath + "\\gfx\\flags\\" + flagFile, flagsPath + "\\" + country->GetTag() + extension);
+    }
+  }
 }
 
 } // EU4

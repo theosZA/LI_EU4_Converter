@@ -26,6 +26,7 @@ class CountryCollection
 
     const Country& GetCountryByTitle(const std::string& titleID) const;
     Country& GetCountryByTitle(const std::string& titleID);
+    const Country* GetOptionalCountryByTitle(const std::string& titleID) const;
 
     // Writes all countries' tags.
     void WriteTags(const std::string& fileName) const;

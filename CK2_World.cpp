@@ -14,11 +14,11 @@ namespace CK2 {
 World::World(const std::string& ck2Path, const std::string& saveFileName, const std::string& modSubPath)
 {
   LOG(LogLevel::Info) << "Reading vanilla localisations";
-  for (const auto& fileName : GetAllFilesInFolder(ck2Path + "\\localisation"))
+  for (const auto& fileName : FileUtilities::GetAllFilesInFolder(ck2Path + "\\localisation"))
     localisation.AddLocalisations(std::ifstream(ck2Path + "\\localisation\\" + fileName));
 
   LOG(LogLevel::Info) << "Reading mod localisations";
-  for (const auto& fileName : GetAllFilesInFolder(modSubPath + "\\localisation"))
+  for (const auto& fileName : FileUtilities::GetAllFilesInFolder(modSubPath + "\\localisation"))
     localisation.AddLocalisations(std::ifstream(modSubPath + "\\localisation\\" + fileName));
 
   LOG(LogLevel::Info) << "Reading save";

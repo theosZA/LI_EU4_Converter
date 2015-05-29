@@ -18,8 +18,8 @@ class World
     // Creates an EU4 world from a CK2 world. The vanilla world in the EU4 path is used as the baseline.
     World(const CK2::World&, const std::string& eu4Path);
 
-    // Writes this world as an EU4 mod (to your EU4 mod path).
-    void CreateMod(const std::string& name, const std::string& eu4ModPath);
+    // Writes this world as an EU4 mod (to your EU4 mod path). The CK2 mod is needed for copying over flags.
+    void CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& ck2ModSubPath);
 
   private:
     CountryCollection countries;

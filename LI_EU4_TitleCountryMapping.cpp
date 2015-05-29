@@ -42,4 +42,15 @@ const std::string& TitleCountryMapping::GetCountryTag(const std::string& titleID
   return findIter->second;
 }
 
+const std::string& TitleCountryMapping::GetOptionalCountryTag(const std::string& titleID) const
+{
+  auto findIter = mapping.find(titleID);
+  if (findIter == mapping.end())
+  {
+    static const std::string noSuchTitle = "";
+    return noSuchTitle;
+  }
+  return findIter->second;
+}
+
 } // LI_EU4

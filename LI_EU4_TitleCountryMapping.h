@@ -17,6 +17,9 @@ class TitleCountryMapping
 
     // Returns the EU4 country corresponding the given CK2 (top-level) title.
     const std::string& GetCountryTag(const std::string& titleID) const;
+    // Returns the EU4 country corresponding the given CK2 (top-level) title.
+    // If there is no such country then returns an empty string.
+    const std::string& GetOptionalCountryTag(const std::string& titleID) const;
 
   private:
     std::string lastTag;
