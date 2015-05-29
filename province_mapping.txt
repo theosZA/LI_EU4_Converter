@@ -358,6 +358,38 @@
 1568=1083 # Vetluga
 
 # European nomads east of Russia - Perm, Kazan, Nogai
+592,594=2422 # Veda-Suvar
+595,593=1081 # Simbirsk
+596=304 # Penza - LI Alatyr doesn't map well to EU4 Alatyr
+612,611,595=2419 # Kanadey - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+608=469 # Ryn - LI Ryn isn't anywhere near EU4 Ryn
+608,612=2367 # Lower Yik
+609,608,611=2365 # Orda - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+610=465 # Nogay
+612=470 # Bayuly
+612=2366 # Utva
+612=474 # Yaik
+613=473 # Samara
+613=1965 # Buzuluk
+613=2420 # Agyidel
+614,1570=2444 # Bashgirid
+615=1082 # Kazan
+615=1972 # Udmurtia
+615=2421 # Ar-Chally
+620=1964 # Ust-Sysolsk
+621=1962 # Kudymkar
+622=1963 # Cherdyn
+623=1077 # Solikamsk
+631=472 # Zhetyru
+631=471 # Alimuly
+632=2351 # Shekty
+632=2353 # Tortkara
+633=443 # Ustyurt
+634=439 # Mangyshlak
+642=2370 # Kungirot
+1561=1966 # Chelyaba - LI Chelyaba doesn't map well to EU4 Chelyaba
+1569=475 # Bashkortostan
+1570=305 # Perm
 
 # Golden Horde and north of the Caucasus
 556=2195 # Adyghe
