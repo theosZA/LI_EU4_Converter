@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CK2_Localisation.cpp" />
     <ClCompile Include="CK2_Province.cpp" />
     <ClCompile Include="CK2_ProvinceCollection.cpp" />
     <ClCompile Include="CK2_Title.cpp" />
@@ -96,6 +97,7 @@
     <ClCompile Include="StringUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CK2_Localisation.h" />
     <ClInclude Include="CK2_Province.h" />
     <ClInclude Include="CK2_ProvinceCollection.h" />
     <ClInclude Include="CK2_TitleCollection.h" />

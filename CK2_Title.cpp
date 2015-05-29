@@ -1,5 +1,7 @@
 #include "CK2_Title.h"
 
+#include "CK2_Localisation.h"
+
 namespace CK2 {
 
 std::string StripQuotes(const std::string& text)
@@ -10,9 +12,17 @@ std::string StripQuotes(const std::string& text)
     return text;
 }
 
-Title::Title(const Parser::Item& titleItem)
-: id(titleItem.key)
+Title::Title(const Parser::Item& titleItem, const Localisation& localisation)
+: id(titleItem.key),
+  name(localisation.GetLocalisation(id, 0)),
+  adjective(localisation.GetLocalisation(id + "_adj", 0))
 {
+  if (adjective.empty())
+    adjective = name; // fallback as many adjective forms are left unspecified.
+
+  if (name.empty()) // this looks wrong - there should be a name for every title specified somewhere
+    name = adjective;
+
   for (const auto& titleSubItem : titleItem.items)
   {
     if (titleSubItem->key == "liege" && !titleSubItem->items.empty())

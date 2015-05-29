@@ -325,7 +325,7 @@
 384=309 # Olonets
 1563=28 # Nyland
 
-# Novgorod and other Russian lands outside the Hordes
+# Non-nomadic Russia
 382,390=33 # Neva
 385=2749 # Tikhvin
 386=310 # Novgorod
@@ -333,8 +333,69 @@
 388,389=311 # Kholm
 390=34 # Ingermanland
 390=1961 # Ladoga
+1566,542=296 # Kaluga
+569=300 # Tula
+570=295 # Moskva
+571,572=294 # Tver
 573=1959 # Torzhok
-#...incomplete
+574=312 # Beloozero
+575=1958 # Kargopol
+576=1955 # Kholmogory
+577,1567=314 # Vologda
+578,617=1755 # Ustyug
+579=1957 # Galich
+580=1753 # Kostroma
+581,582=308 # Yaroslavl
+587,583=307 # Vladimir
+585,586=1956 # Suzdal
+588=301 # Ryazan
+589=1754 # Murom
+589=1778 # Kasimov
+590,591=306 # Nizhny Novgorod
+597=2423 # Alatyr - LI Alatyr doesn't map well to EU4 Alatyr
+616=1079 # Viatka
+619,1564=313 # Archangelsk
+1568=1083 # Vetluga
+
+# European nomads east of Russia - Perm, Kazan, Nogai
+
+# Golden Horde and north of the Caucasus
+556=2195 # Adyghe
+558=463 # Circassia
+559=2197 # Kabardia
+561=288 # Lower Don
+564=2409 # Bahmut
+598,564,599=299 # Voronezh - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+565,569,598=2408 # Lipetsk - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+596=2415 # Etkara
+596=303 # Saratov
+598=302 # Tambov
+599,600=467 # Borisoglebsk
+601=1971 # Tsaritsyn
+602=2416 # Majar
+602=468 # Manych
+609,603,602=2417 # Kuma - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+603=464 # Astrakhan
+603=2208 # Terek
+604=2201 # Alania
+605=2199 # Tarki
+606=2198 # Khundzia
+607=425 # Dagestan
+609=466 # Sarai
+611=2418 # Ukek
+
+# Crimea
+549=2411 # Mansur - with Kyzyl-Yar this is an awkward 2->2 fit; Thalassastrofi loses its coastline in becoming Mansur
+550=1974 # Yedishkul
+551=284 # Crimea
+552=2410 # Theodoro
+554,553=285 # Cafa
+555=2447 # Mantrega
+557=287 # Kuban
+557,563,562=286 # Azov - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+560=2414 # Azaraba
+562=2413 # Tyn
+563=2412 # Kyzl-Yar - with Mansur this is an awkward 2-2 fit; Emporion Kremnoi loses a number of adjacencies in becoming Kyzyl-Yar
 
 # Lithuania, Livonia and Estonia
 391=274 # Pskov
@@ -353,7 +414,7 @@
 402=271 # Zemaitija
 403=39 # Kurland
 407=270 # Trakai
-409=279 # Volhynia
+409=279 # Volhynia - This general area is a bit distorted trying to fit in all the EU4 provinces to their natural LI equivalents
 409=277 # Brasta
 411=269 # Palenke - LI Palenke doesn't map well to EU4 Palenke
 412=1937 # Gardinas

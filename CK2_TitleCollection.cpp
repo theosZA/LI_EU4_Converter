@@ -5,12 +5,11 @@
 
 namespace CK2 {
 
-// Represents all CK2 landed titles in the game.
-TitleCollection::TitleCollection(const Parser::Item& titlesItem)
+TitleCollection::TitleCollection(const Parser::Item& titlesItem, const Localisation& localisation)
 {
   for (const auto& titleItem : titlesItem.items)
   {
-    Title title(*titleItem);
+    Title title(*titleItem, localisation);
     titles.emplace(title.GetID(), std::move(title));
   }
 }

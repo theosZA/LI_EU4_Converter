@@ -8,6 +8,16 @@
 
 namespace EU4 {
 
+// Strip out all characters that aren't just standard letters (A-Z,a-z).
+std::string NormalizeName(const std::string& name)
+{
+  std::string normalized;
+  for (char c : name)
+    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+      normalized.push_back(c);
+  return normalized;
+}
+
 CountryCollection::CountryCollection(const CK2::TitleCollection& titles)
 {
   LOG(LogLevel::Info) << "Creating EU4 countries";
@@ -51,7 +61,7 @@ void CountryCollection::WriteTags(const std::string& fileName) const
   if (!tagsFile)
     throw std::runtime_error("Error creating tags file");
   for (const auto& countryPair : countries)
-    tagsFile << countryPair.first << " = " << "countries/" << countryPair.second.GetName() << ".txt\n";
+    tagsFile << countryPair.first << " = " << "countries/" << NormalizeName(countryPair.second.GetName()) << ".txt\n";
 }
 
 void CountryCollection::WriteCommonInfo(const std::string& path) const
@@ -59,7 +69,7 @@ void CountryCollection::WriteCommonInfo(const std::string& path) const
   for (const auto& countryPair : countries)
   {
     const auto& country = countryPair.second;
-    std::ofstream commonFile(path + '\\' + country.GetName() + ".txt");
+    std::ofstream commonFile(path + '\\' + NormalizeName(country.GetName()) + ".txt");
     if (!commonFile)
       throw std::runtime_error("Error creating common country file for country " + country.GetName());
     country.WriteCommonInfo(commonFile);
@@ -71,7 +81,7 @@ void CountryCollection::WriteHistory(const std::string& path) const
   for (const auto& countryPair : countries)
   {
     const auto& country = countryPair.second;
-    std::ofstream historyFile(path + '\\' + country.GetTag() + " - " + country.GetName() + ".txt");
+    std::ofstream historyFile(path + '\\' + country.GetTag() + " - " + NormalizeName(country.GetName()) + ".txt");
     if (!historyFile)
       throw std::runtime_error("Error creating common history file for country " + country.GetName());
     country.WriteHistory(historyFile);
@@ -83,7 +93,8 @@ void CountryCollection::WriteLocalisation(const std::string& fileName) const
   std::ofstream localisationCountriesFile(fileName);
   if (!localisationCountriesFile)
     throw std::runtime_error("Error creating countries localistion file");
-  localisationCountriesFile << "l_english:\n";
+  localisationCountriesFile << char(0xEF) << char(0xBB) << char(0xBF) // UTF-8 BOM required by EU4
+                            << "l_english:\n";
   for (const auto& countryPair : countries)
     countryPair.second.WriteLocalisation(localisationCountriesFile);
 }
