@@ -95,6 +95,7 @@
     <ClCompile Include="LI_EU4_Converter.cpp" />
     <ClCompile Include="LI_EU4_ProvinceMapping.cpp" />
     <ClCompile Include="StringUtilities.cpp" />
+    <ClCompile Include="Unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CK2_Localisation.h" />
@@ -115,6 +116,7 @@
     <ClInclude Include="FileUtilities.h" />
     <ClInclude Include="LI_EU4_ProvinceMapping.h" />
     <ClInclude Include="StringUtilities.h" />
+    <ClInclude Include="Unicode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

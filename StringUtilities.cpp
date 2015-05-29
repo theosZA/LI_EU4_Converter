@@ -27,14 +27,3 @@ std::vector<std::string> SplitString(const std::string& text, char delimiter)
   }
   return result;
 }
-
-std::string LatinToUTF8(const std::string& text)
-{
-  std::string utf8text;
-  for (unsigned char c : text)
-    if (c < 128) 
-      utf8text.push_back(c);
-    else  // TBD: Proper conversion rules for CP-1252
-      utf8text.push_back('?');
-  return utf8text;
-}

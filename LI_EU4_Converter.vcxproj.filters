@@ -20,6 +20,7 @@
     <ClCompile Include="CK2_World.cpp" />
     <ClCompile Include="EU4_World.cpp" />
     <ClCompile Include="CK2_Localisation.cpp" />
+    <ClCompile Include="Unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -40,5 +41,6 @@
     <ClInclude Include="CK2_World.h" />
     <ClInclude Include="EU4_World.h" />
     <ClInclude Include="CK2_Localisation.h" />
+    <ClInclude Include="Unicode.h" />
   </ItemGroup>
 </Project>

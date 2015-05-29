@@ -1,6 +1,7 @@
 #include "CK2_Localisation.h"
 
 #include "StringUtilities.h"
+#include "Unicode.h"
 
 namespace CK2 {
 
@@ -17,7 +18,7 @@ void Localisation::AddLocalisations(std::istream& in)
       {
         auto& newLocalisation = localisations[currentLocalisations[0]];
         for (size_t i = 1; i < currentLocalisations.size() - 1; ++i)
-           newLocalisation.push_back(LatinToUTF8(currentLocalisations[i]));
+           newLocalisation.push_back(Unicode::Windows1252ToUTF8(currentLocalisations[i]));
       }
     }
   }
