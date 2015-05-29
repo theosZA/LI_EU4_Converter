@@ -5,11 +5,11 @@
 
 namespace CK2 {
 
-TitleCollection::TitleCollection(const Parser::Item& titlesItem, const Localisation& localisation)
+TitleCollection::TitleCollection(const Parser::Item& titlesItem, const Localisation& localisation, const ProvinceCollection& provinces)
 {
   for (const auto& titleItem : titlesItem.items)
   {
-    Title title(*titleItem, localisation);
+    Title title(*titleItem, localisation, provinces);
     titles.emplace(title.GetID(), std::move(title));
   }
 }

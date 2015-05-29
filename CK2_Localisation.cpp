@@ -17,6 +17,7 @@ void Localisation::AddLocalisations(std::istream& in)
       if (!currentLocalisations.empty())
       {
         auto& newLocalisation = localisations[currentLocalisations[0]];
+        newLocalisation.clear();  // replace old localisations with these newer ones
         for (size_t i = 1; i < currentLocalisations.size() - 1; ++i)
            newLocalisation.push_back(Unicode::Windows1252ToUTF8(currentLocalisations[i]));
       }

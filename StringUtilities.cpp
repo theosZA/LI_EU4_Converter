@@ -27,3 +27,11 @@ std::vector<std::string> SplitString(const std::string& text, char delimiter)
   }
   return result;
 }
+
+std::string StripQuotes(const std::string& text)
+{
+  if (text.size() >= 2 && text.front() == '"' && text.back() == '"')
+    return text.substr(1, text.size() - 2);
+  else
+    return text;
+}

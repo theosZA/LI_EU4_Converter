@@ -12,12 +12,13 @@ class Country;
 namespace CK2 {
 
 class Localisation;
+class ProvinceCollection;
 
 // Represents a CK2 landed title from baronies to empires.
 class Title
 {
   public:
-    Title(const Parser::Item& titleItem, const Localisation&);
+    Title(const Parser::Item& titleItem, const Localisation&, const ProvinceCollection&);
 
     const std::string& GetID() const { return id; }
     const std::string& GetLiege() const { return liegeTitle; }

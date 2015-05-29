@@ -10,12 +10,13 @@
 namespace CK2 {
 
 class Localisation;
+class ProvinceCollection;
 
 // Represents all CK2 landed titles in the game.
 class TitleCollection
 {
   public:
-    TitleCollection(const Parser::Item& titlesItem, const Localisation&);
+    TitleCollection(const Parser::Item& titlesItem, const Localisation&, const ProvinceCollection& provinces);
 
     // Updates the titles with the general information provided in the given items, e.g. colour.
     void UpdateTitles(const Parser::ItemSet& items);

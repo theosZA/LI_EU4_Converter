@@ -28,13 +28,13 @@ World::World(const std::string& ck2Path, const std::string& saveFileName, const 
   auto provinceItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "provinces"; });
   if (provinceItem == saveItems.end())
     throw std::runtime_error("Failed to find provinces entry in save game file");
-  provinces.reset(new CK2::ProvinceCollection(**provinceItem));
+  provinces.reset(new CK2::ProvinceCollection(**provinceItem, modSubPath + "\\history\\provinces"));
 
   LOG(LogLevel::Info) << "Building source titles";
   auto titleItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "title"; });
   if (titleItem == saveItems.end())
     throw std::runtime_error("Failed to find title entry in save game file");
-  titles.reset(new CK2::TitleCollection(**titleItem, localisation));
+  titles.reset(new CK2::TitleCollection(**titleItem, localisation, *provinces));
 
   LOG(LogLevel::Info) << "Reading LI titles";
   const std::vector<std::string> titlesFileNames { "landed_titles.txt", "mercenary_titles.txt", "religious_titles.txt", "titular_titles.txt" };
