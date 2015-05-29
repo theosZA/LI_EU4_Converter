@@ -17,9 +17,10 @@ class Province
     // Constructor based on an existing EU4 province history.
     Province(int id, const std::string& name, std::istream&);
 
-    // Sets the owner and controller of the province to the specified country. Also clears all existing
-    // cores and grants that country a core in the province.
-    void ResetOwner(const std::string& tag);
+    void SetOwner(const std::string& tag);
+    void SetController(const std::string& tag);
+    void ClearCores();
+    void AddCore(const std::string& tag);
 
     int GetID() const { return id; }
     const std::string& GetName() const { return name; }

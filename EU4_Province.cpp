@@ -43,11 +43,23 @@ Province::Province(int id, const std::string& name, std::istream& in)
   }
 }
 
-void Province::ResetOwner(const std::string& tag)
+void Province::SetOwner(const std::string& tag)
 {
-  ownerTag = tag;
+  ownerTag = tag; 
+}
+
+void Province::SetController(const std::string& tag)
+{
   controllerTag = tag;
+}
+
+void Province::ClearCores()
+{
   coreTags.clear();
+}
+
+void Province::AddCore(const std::string& tag)
+{
   coreTags.insert(tag);
 }
 

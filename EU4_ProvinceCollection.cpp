@@ -1,5 +1,6 @@
 #include "EU4_ProvinceCollection.h"
 
+#include <algorithm>
 #include <fstream>
 #include <stdexcept>
 #include <vector>
@@ -13,6 +14,61 @@
 #include "StringUtilities.h"
 
 namespace EU4 {
+
+const std::string& DetermineProvinceOwnership(Province& destProvince, const std::vector<int>& sourceProvinceIDs,
+                                              const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries)
+{
+  int maxProvincesOwned = 0;
+  // Count how many provinces each title (country) has.
+  std::map<std::string, int> provincesOwnedByTitle;
+  std::vector<std::string> sourceProvinceOwners;
+  for (int sourceProvinceID : sourceProvinceIDs)
+  {
+    auto titleID = sourceProvinces.GetProvinceTopLevelTitle(sourceProvinceID, titles);
+    sourceProvinceOwners.push_back(titleID);
+    auto findIter = provincesOwnedByTitle.find(titleID);
+    if (findIter == provincesOwnedByTitle.end())
+      findIter = provincesOwnedByTitle.emplace(std::move(titleID), 0).first;
+    int& provincesOwned = findIter->second;
+    ++provincesOwned;
+    if (provincesOwned > maxProvincesOwned)
+      maxProvincesOwned = provincesOwned;
+  }
+
+  // Award cores to all countries with provinces.
+  destProvince.ClearCores();
+  for (const auto& ownerPair : provincesOwnedByTitle)
+  {
+    const auto& titleID = ownerPair.first;
+    destProvince.AddCore(countries.GetCountryByTitle(titleID).GetTag());
+  }
+
+  // Remove from the running (for ownership of the new province) all countries that
+  // don't have the most source provinces.
+  for (auto i = provincesOwnedByTitle.begin(); i != provincesOwnedByTitle.end();)
+    if (i->second < maxProvincesOwned)
+      provincesOwnedByTitle.erase(i++);
+    else
+      ++i;
+
+  // Pick the owner of the first source province in the given list who is still in the running.
+  auto bestIter = std::find_if(sourceProvinceOwners.begin(), sourceProvinceOwners.end(),
+      [&](const std::string& sourceProvinceOwner)
+      {
+        return provincesOwnedByTitle.find(sourceProvinceOwner) != provincesOwnedByTitle.end();
+      });
+  if (bestIter == sourceProvinceOwners.end())
+  {
+    static const std::string noOwner = "";
+    return noOwner;
+  }
+
+  const auto& bestOwnerTitle = *bestIter;
+  const auto& bestOwnerTag = countries.GetCountryByTitle(bestOwnerTitle).GetTag();
+  destProvince.SetOwner(bestOwnerTag);
+  destProvince.SetController(bestOwnerTag);
+  return countries.GetCountry(bestOwnerTag).GetName();
+}
 
 ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries,
                                        const std::string& provinceMappingFileName, const std::string& provincePath)
@@ -30,12 +86,9 @@ ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProv
     auto& destProvince = destProvincePair.second;
 
     const auto& sourceProvinceIDs = provinceMapping.GetCK2ProvinceIDs(destProvinceID);
-    auto sourceProvinceID = sourceProvinceIDs[0]; // For now we will just use whichever province is listed first. TBD: Use a real decision algorithm.
-    auto sourceTitle = sourceProvinces.GetProvinceTopLevelTitle(sourceProvinceID, titles);
-    const auto& country = countries.GetCountryByTitle(sourceTitle);
+    const auto& owner = DetermineProvinceOwnership(destProvince, sourceProvinceIDs, sourceProvinces, titles, countries);
 
-    destProvince.ResetOwner(country.GetTag());
-    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " from CK2 province " << sourceProvinceID << " (" << sourceTitle << " to " << country.GetName() << ')';
+    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " assigned to " << owner;
   }  
 
 }
