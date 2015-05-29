@@ -6,7 +6,14 @@ namespace EU4 {
 
 // TBD: name and adjective should come from title
 Country::Country(const std::string& tag, const CK2::Title& title)
-: tag(tag), name(title.name), adjective(title.adjective), colour(title.colour)
+: tag(tag), 
+#ifdef MONOCOLOUR_TEST
+  name(tag),
+#else
+  name(title.name), 
+#endif
+  adjective(title.adjective), 
+  colour(title.colour)
 {}
 
 void Country::WriteCommonInfo(std::ostream& out) const
