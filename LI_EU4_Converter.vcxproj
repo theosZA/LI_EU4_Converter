@@ -76,6 +76,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CK2_Culture.cpp" />
+    <ClCompile Include="CK2_CultureCollection.cpp" />
+    <ClCompile Include="CK2_CultureGroup.cpp" />
     <ClCompile Include="CK2_Localisation.cpp" />
     <ClCompile Include="CK2_Province.cpp" />
     <ClCompile Include="CK2_ProvinceCollection.cpp" />
@@ -85,6 +88,9 @@
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
     <ClCompile Include="EU4_CountryCollection.cpp" />
+    <ClCompile Include="EU4_Culture.cpp" />
+    <ClCompile Include="EU4_CultureCollection.cpp" />
+    <ClCompile Include="EU4_CultureGroup.cpp" />
     <ClCompile Include="EU4_World.cpp" />
     <ClCompile Include="LI_EU4_TitleCountryMapping.cpp" />
     <ClCompile Include="Log.cpp" />
@@ -98,6 +104,9 @@
     <ClCompile Include="Unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CK2_Culture.h" />
+    <ClInclude Include="CK2_CultureCollection.h" />
+    <ClInclude Include="CK2_CultureGroup.h" />
     <ClInclude Include="CK2_Localisation.h" />
     <ClInclude Include="CK2_Province.h" />
     <ClInclude Include="CK2_ProvinceCollection.h" />
@@ -107,9 +116,13 @@
     <ClInclude Include="EU4_Country.h" />
     <ClInclude Include="CK2_Title.h" />
     <ClInclude Include="EU4_CountryCollection.h" />
+    <ClInclude Include="EU4_Culture.h" />
+    <ClInclude Include="EU4_CultureCollection.h" />
+    <ClInclude Include="EU4_CultureGroup.h" />
     <ClInclude Include="EU4_World.h" />
     <ClInclude Include="LI_EU4_TitleCountryMapping.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="MapUtilities.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="EU4_Province.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />

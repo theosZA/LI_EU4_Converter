@@ -32,7 +32,7 @@ Title::Title(const Parser::Item& titleItem, const Localisation& localisation, co
   {
     int provinceID = provinces.GetProvinceIDForCountyLevelTitle(id);
     if (provinceID != -1)
-      name = provinces.GetProvinceName(provinceID);
+      name = provinces.GetProvince(provinceID).GetName();
   }
 
   if (name.empty()) // There really should be a name for every title specified somewhere - for now use the title ID so it stands out.

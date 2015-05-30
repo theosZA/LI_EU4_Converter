@@ -10,7 +10,8 @@
 namespace EU4 {
 
 World::World(const CK2::World& source, const std::string& eu4Path)
-: countries(*source.titles),
+: cultures(*source.cultures, source.localisation),
+  countries(*source.titles),
   provinces(*source.provinces, *source.titles, countries, "province_mapping.txt", eu4Path + "\\history\\provinces")
 {}
 
@@ -21,6 +22,7 @@ void World::CreateMod(const std::string& name, const std::string& eu4ModPath, co
   std::string commonPath = FileUtilities::MakeFolder(convertedModPath + "\\common");
   std::string tagsPath = FileUtilities::MakeFolder(commonPath + "\\country_tags");
   std::string commonCountriesPath = FileUtilities::MakeFolder(commonPath + "\\countries");
+  std::string culturesPath = FileUtilities::MakeFolder(commonPath + "\\cultures");
   std::string historyPath = FileUtilities::MakeFolder(convertedModPath + "\\history");
   std::string historyCountriesPath = FileUtilities::MakeFolder(historyPath + "\\countries");
   std::string historyProvincesPath = FileUtilities::MakeFolder(historyPath + "\\provinces");
@@ -47,7 +49,13 @@ void World::CreateMod(const std::string& name, const std::string& eu4ModPath, co
   countries.WriteHistory(historyCountriesPath);
 
   LOG(LogLevel::Info) << "Writing country localisations file";
-  countries.WriteLocalisation(localisationPath + '\\' + name + "_tags_l_english.yml");
+  countries.WriteLocalisation(localisationPath + "\\new_tags_l_english.yml");
+
+  LOG(LogLevel::Info) << "Writing cultures file";
+  cultures.WriteToStream(std::ofstream(culturesPath + "\\00_cultures.txt"));
+
+  LOG(LogLevel::Info) << "Writing culture localisations file";
+  cultures.WriteLocalisations(std::ofstream(localisationPath + "\\new_cultures_l_english.yml"));
 
   LOG(LogLevel::Info) << "Writing province files";
   provinces.WriteHistoryToFiles(historyProvincesPath, countries);

@@ -21,6 +21,9 @@ World::World(const std::string& ck2Path, const std::string& saveFileName, const 
   for (const auto& fileName : FileUtilities::GetAllFilesInFolder(modSubPath + "\\localisation"))
     localisation.AddLocalisations(std::ifstream(modSubPath + "\\localisation\\" + fileName));
 
+  LOG(LogLevel::Info) << "Reading mod cultures";
+  cultures.reset(new CultureCollection(Parser::Parse(std::ifstream(modSubPath + "\\common\\cultures\\00_cultures.txt"))));
+
   LOG(LogLevel::Info) << "Reading save";
   auto saveItems = Parser::Parse(std::ifstream(saveFileName));
 

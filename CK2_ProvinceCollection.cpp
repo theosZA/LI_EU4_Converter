@@ -30,22 +30,13 @@ ProvinceCollection::ProvinceCollection(const Parser::Item& provincesItem, const 
   }
 }
 
-const std::string& ProvinceCollection::GetProvinceName(int provinceID) const
+const Province& ProvinceCollection::GetProvince(int provinceID) const
 {
   auto findIter = provinces.find(provinceID);
   if (findIter == provinces.end())
     throw std::runtime_error("Failed to find province " + std::to_string(provinceID));
-  
-  return findIter->second.GetName();
-}
-
-std::string ProvinceCollection::GetProvinceTopLevelTitle(int provinceID, const TitleCollection& titles) const
-{
-  auto findIter = provinces.find(provinceID);
-  if (findIter == provinces.end())
-    throw std::runtime_error("Failed to find province " + std::to_string(provinceID));
-  
-  return findIter->second.GetTopLevelTitle(titles);
+ 
+  return findIter->second;
 }
 
 int ProvinceCollection::GetProvinceIDForCountyLevelTitle(const std::string& titleID) const

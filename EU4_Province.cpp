@@ -63,6 +63,11 @@ void Province::AddCore(const std::string& tag)
   coreTags.insert(tag);
 }
 
+void Province::SetCulture(const std::string& newCulture)
+{
+  culture = newCulture;
+}
+
 void Province::WriteHistory(std::ostream& out, const CountryCollection& countries) const
 {
   out << "owner = " << ownerTag << " # " << countries.GetCountry(ownerTag).GetName() << '\n'

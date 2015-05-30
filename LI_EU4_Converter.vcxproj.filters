@@ -21,6 +21,12 @@
     <ClCompile Include="EU4_World.cpp" />
     <ClCompile Include="CK2_Localisation.cpp" />
     <ClCompile Include="Unicode.cpp" />
+    <ClCompile Include="CK2_Culture.cpp" />
+    <ClCompile Include="CK2_CultureGroup.cpp" />
+    <ClCompile Include="CK2_CultureCollection.cpp" />
+    <ClCompile Include="EU4_Culture.cpp" />
+    <ClCompile Include="EU4_CultureGroup.cpp" />
+    <ClCompile Include="EU4_CultureCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -42,5 +48,12 @@
     <ClInclude Include="EU4_World.h" />
     <ClInclude Include="CK2_Localisation.h" />
     <ClInclude Include="Unicode.h" />
+    <ClInclude Include="CK2_Culture.h" />
+    <ClInclude Include="CK2_CultureGroup.h" />
+    <ClInclude Include="CK2_CultureCollection.h" />
+    <ClInclude Include="EU4_Culture.h" />
+    <ClInclude Include="EU4_CultureGroup.h" />
+    <ClInclude Include="EU4_CultureCollection.h" />
+    <ClInclude Include="MapUtilities.h" />
   </ItemGroup>
 </Project>

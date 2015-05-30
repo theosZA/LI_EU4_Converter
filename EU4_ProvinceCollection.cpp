@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <fstream>
+#include <functional>
 #include <stdexcept>
 #include <vector>
 
@@ -11,29 +12,56 @@
 #include "FileUtilities.h"
 #include "LI_EU4_ProvinceMapping.h"
 #include "Log.h"
+#include "MapUtilities.h"
 #include "StringUtilities.h"
 
 namespace EU4 {
 
+// Returns true if the given collection has the specified value.
+template <class V>
+bool HasValue(const std::vector<V>& collection, const V& value)
+{
+  return std::find(collection.begin(), collection.end(), value) != collection.end();
+}
+
+// We are interested in a particular feature of each province. Returns a count of each unique instance of that
+// feature across all specified provinces.
+std::map<std::string, int> GetProvinceFeatureCounts(const std::vector<int>& sourceProvinceIDs, const CK2::ProvinceCollection& sourceProvinces,
+                                                    const std::function<std::string(const CK2::Province&)>& getFeature)
+{
+  std::map<std::string, int> featureCounts;
+  for (int sourceProvinceID : sourceProvinceIDs)
+  {
+    std::string feature = getFeature(sourceProvinces.GetProvince(sourceProvinceID));
+    auto findIter = featureCounts.find(feature);
+    if (findIter == featureCounts.end())
+      findIter = featureCounts.emplace(std::move(feature), 0).first;
+    int& count = findIter->second;
+    ++count;
+  }
+  return featureCounts;
+}
+
+// Returns the first province in the list of province IDs for which the predicate returns true.
+// Returns 0 if no matching province is found.
+int GetFirstProvince(const std::vector<int>& sourceProvinceIDs, const CK2::ProvinceCollection& sourceProvinces,
+                     const std::function<bool(const CK2::Province&)>& predicate)
+{
+  for (int sourceProvinceID : sourceProvinceIDs)
+    if (predicate(sourceProvinces.GetProvince(sourceProvinceID)))
+      return sourceProvinceID;
+  return 0;
+}
+
 const std::string& DetermineProvinceOwnership(Province& destProvince, const std::vector<int>& sourceProvinceIDs,
                                               const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries)
 {
-  int maxProvincesOwned = 0;
   // Count how many provinces each title (country) has.
-  std::map<std::string, int> provincesOwnedByTitle;
-  std::vector<std::string> sourceProvinceOwners;
-  for (int sourceProvinceID : sourceProvinceIDs)
-  {
-    auto titleID = sourceProvinces.GetProvinceTopLevelTitle(sourceProvinceID, titles);
-    sourceProvinceOwners.push_back(titleID);
-    auto findIter = provincesOwnedByTitle.find(titleID);
-    if (findIter == provincesOwnedByTitle.end())
-      findIter = provincesOwnedByTitle.emplace(std::move(titleID), 0).first;
-    int& provincesOwned = findIter->second;
-    ++provincesOwned;
-    if (provincesOwned > maxProvincesOwned)
-      maxProvincesOwned = provincesOwned;
-  }
+  auto provincesOwnedByTitle = GetProvinceFeatureCounts(sourceProvinceIDs, sourceProvinces, 
+      [&](const CK2::Province& sourceProvince) 
+      {
+        return sourceProvince.GetTopLevelTitle(titles); 
+      });
 
   // Award cores to all countries with provinces.
   destProvince.ClearCores();
@@ -45,29 +73,46 @@ const std::string& DetermineProvinceOwnership(Province& destProvince, const std:
 
   // Remove from the running (for ownership of the new province) all countries that
   // don't have the most source provinces.
-  for (auto i = provincesOwnedByTitle.begin(); i != provincesOwnedByTitle.end();)
-    if (i->second < maxProvincesOwned)
-      provincesOwnedByTitle.erase(i++);
-    else
-      ++i;
+  auto bestTitles = MapUtilities::GetKeysWithMaxValue(provincesOwnedByTitle);
 
   // Pick the owner of the first source province in the given list who is still in the running.
-  auto bestIter = std::find_if(sourceProvinceOwners.begin(), sourceProvinceOwners.end(),
-      [&](const std::string& sourceProvinceOwner)
+  int bestProvinceID = GetFirstProvince(sourceProvinceIDs, sourceProvinces,
+      [&](const CK2::Province& sourceProvince) 
       {
-        return provincesOwnedByTitle.find(sourceProvinceOwner) != provincesOwnedByTitle.end();
+        return HasValue(bestTitles, sourceProvince.GetTopLevelTitle(titles));
       });
-  if (bestIter == sourceProvinceOwners.end())
+  if (bestProvinceID == 0)
   {
     static const std::string noOwner = "";
     return noOwner;
   }
 
-  const auto& bestOwnerTitle = *bestIter;
+  const auto& bestOwnerTitle = sourceProvinces.GetProvince(bestProvinceID).GetTopLevelTitle(titles);
   const auto& bestOwnerTag = countries.GetCountryByTitle(bestOwnerTitle).GetTag();
   destProvince.SetOwner(bestOwnerTag);
   destProvince.SetController(bestOwnerTag);
   return countries.GetCountry(bestOwnerTag).GetName();
+}
+
+const std::string& GetMajorityCulture(const std::vector<int>& sourceProvinceIDs, const CK2::ProvinceCollection& sourceProvinces)
+{
+  auto numProvincesWithCulture = GetProvinceFeatureCounts(sourceProvinceIDs, sourceProvinces, 
+      [&](const CK2::Province& sourceProvince) 
+      {
+        return sourceProvince.GetCulture(); 
+      });
+  auto bestCultures = MapUtilities::GetKeysWithMaxValue(numProvincesWithCulture);
+  int bestProvinceID = GetFirstProvince(sourceProvinceIDs, sourceProvinces,
+      [&](const CK2::Province& sourceProvince) 
+      {
+        return HasValue(bestCultures, sourceProvince.GetCulture());
+      });
+  if (bestProvinceID == 0)
+  {
+    static const std::string noCulture = "";
+    return noCulture;
+  }
+  return sourceProvinces.GetProvince(bestProvinceID).GetCulture();
 }
 
 ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries,
@@ -89,8 +134,11 @@ ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProv
     const auto& owner = DetermineProvinceOwnership(destProvince, sourceProvinceIDs, sourceProvinces, titles, countries);
 
     LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " assigned to " << owner;
-  }  
 
+    const auto& culture = GetMajorityCulture(sourceProvinceIDs, sourceProvinces);
+    destProvince.SetCulture(culture);
+    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " culture set to " << culture;
+  }
 }
 
 const Province& ProvinceCollection::GetProvince(int provinceID) const

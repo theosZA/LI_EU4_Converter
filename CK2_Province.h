@@ -20,6 +20,7 @@ class Province
 
     int GetID() const { return id; }
     const std::string& GetName() const { return name; }
+    const std::string& GetCulture() const { return culture; }
 
     std::string GetTopLevelTitle(const TitleCollection&) const;
     const std::string& GetCountyLevelTitleID() const { return countyLevelTitleID; }

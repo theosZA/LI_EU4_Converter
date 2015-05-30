@@ -22,6 +22,8 @@ class Province
     void ClearCores();
     void AddCore(const std::string& tag);
 
+    void SetCulture(const std::string& culture);
+
     int GetID() const { return id; }
     const std::string& GetName() const { return name; }
 

@@ -3,6 +3,7 @@
 #include <string>
 
 #include "EU4_CountryCollection.h"
+#include "EU4_CultureCollection.h"
 #include "EU4_ProvinceCollection.h"
 
 namespace CK2 {
@@ -22,6 +23,7 @@ class World
     void CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& ck2ModSubPath);
 
   private:
+    CultureCollection cultures;
     CountryCollection countries;
     ProvinceCollection provinces;
 };
