@@ -20,6 +20,9 @@ Culture::Culture(const Parser::Item& cultureItem, const std::string& groupPortra
       maleNames = SplitString(item->items.front()->key, ' ');
     else if (item->key == "female_names" && !item->items.empty())
       femaleNames = SplitString(item->items.front()->key, ' ');
+
+  if (unitGraphicalCulture.empty())
+    unitGraphicalCulture = portraitGraphicalCulture;
 }
         
 } // CK2

@@ -27,6 +27,7 @@ void World::CreateMod(const std::string& name, const std::string& eu4ModPath, co
   std::string historyCountriesPath = FileUtilities::MakeFolder(historyPath + "\\countries");
   std::string historyProvincesPath = FileUtilities::MakeFolder(historyPath + "\\provinces");
   std::string localisationPath = FileUtilities::MakeFolder(convertedModPath + "\\localisation");
+  std::string localisationReplacementsPath = FileUtilities::MakeFolder(localisationPath + "\\replacements");
   std::string graphicsPath = FileUtilities::MakeFolder(convertedModPath + "\\gfx");
   std::string flagsPath = FileUtilities::MakeFolder(graphicsPath + "\\flags");
 
@@ -56,6 +57,7 @@ void World::CreateMod(const std::string& name, const std::string& eu4ModPath, co
 
   LOG(LogLevel::Info) << "Writing culture localisations file";
   cultures.WriteLocalisations(std::ofstream(localisationPath + "\\new_cultures_l_english.yml"));
+  cultures.WriteLocalisations(std::ofstream(localisationReplacementsPath + "\\new_cultures_l_english.yml"));
 
   LOG(LogLevel::Info) << "Writing province files";
   provinces.WriteHistoryToFiles(historyProvincesPath, countries);
