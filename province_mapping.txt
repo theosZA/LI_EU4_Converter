@@ -1,3 +1,6 @@
+# Europe
+# ------
+
 # North Sea
 1=370 # Reykjavik
 2=371 # Akureyri
@@ -558,6 +561,89 @@
 775,777=2348 # Scio
 779=320 # Rhodes
 793,794=321 # Cyprus
+
+# Africa
+# ------
+
+# North Africa
+946=347 # Ifni
+949,948,947=366 # The Canarias
+950=368 # Madeira
+952,951=1110 # Agadir
+952=348 # Sus
+953=2470 # Haha
+953=344 # Marrakech - LI Marrakech doesn't map well to EU4 Marrakech
+953=2468 # Tadla
+954=2467 # Mennes - LI Marrakech doesn't map well to EU4 Marrakech
+955=342 # Gharb
+956=334 # Tangiers
+957=1751 # Ceuta
+958=335 # Melilla
+959=343 # Fez
+960,977=349 # Figuig
+961=2465 # Oujda
+962=336 # Tala Imsan
+963=2461 # Dahra
+964=2462 # Ouarsenis
+966,965=338 # Mitidja
+967=339 # Kabylia
+968=1882 # Annaba
+969=2455 # Bizerte
+970=341 # Tunis
+971=2473 # Sousse
+973,972=2454 # Kef
+974=2458 # Hodna
+974=340 # Constantine
+975,1554=2459 # Titteri
+976,1553=2463 # Kasdir
+978=2460 # Sauoura
+979=2466 # Draa
+979=346 # Tafilalt
+979=2464 # Ouarzazate
+980=1127 # Tuat
+986,985=2448 # Fezzan
+987=2450 # Ghadames
+988=2453 # Sfax
+990=353 # Djerba
+990=2452 # Zuwarah
+991=354 # Tripoli
+991=2451 # Thubaqt
+992=355 # Sirt
+1551=345 # Abda
+1551=2469 # Dukkala
+1552=337 # Wehran
+
+# Egypt west of Sinai peninsula
+824=363 # Dumyat
+825=362 # Rashid
+826=2315 # As-Suways
+827=361 # Qahirah
+828=2320 # Ras Gareb
+829=2321 # Qusayr
+830=2324 # Halaib
+831=1234 # Qasr Ibrim
+831,832,833=2322 # Wadi Halfa - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+832=1228 # Dangola
+833=2323 # Sahra an Nubyah
+834,835=1232 # Suakin
+836,837=1229 # Berber
+914,1010=1220 # Bayuda
+995,993=356 # Bangazi
+997,996,994=357 # Darnah
+998=2326 # Bardiya
+999,998=2325 # Tarrana
+999=358 # Iskandariyya
+1000=2318 # Wahat
+1001=2316 # Gharbeyya
+1002=359 # Fayoum
+1002,1003=2317 # Minya
+1003=2319 # Asyut
+1004=360 # Qina
+1005=1233 # Kharga
+1006=1231 # Aswan
+
+# Asia
+# ----
 
 # Anatolia
 # 774,516= # Biga
