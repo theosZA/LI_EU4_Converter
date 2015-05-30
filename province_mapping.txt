@@ -52,7 +52,7 @@
 
 # France (excl. HRE lands)
 82,81=177 # Maine
-82,90,85=1879 # Alencon - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+82,90,85=1879 # Alencon - best approximate fit determined by overlapping provinces
 91,90,92,83=184 # Orleanais
 84=168 # Normandie
 86,85=167 # Caux
@@ -113,7 +113,7 @@
 190=218 # Badajoz
 197,193,191=224 # Andalucia
 192=225 # Cordoba
-195,194=226 # Jabal Tariq - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+195,194=226 # Jabal Tariq - best approximate fit determined by overlapping provinces
 195,196=1749 # Cadiz
 209,208=206 # Galicia
 
@@ -364,10 +364,10 @@
 592,594=2422 # Veda-Suvar
 595,593=1081 # Simbirsk
 596=304 # Penza - LI Alatyr doesn't map well to EU4 Alatyr
-612,611,595=2419 # Kanadey - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+612,611,595=2419 # Kanadey - best approximate fit determined by overlapping provinces
 608=469 # Ryn - LI Ryn isn't anywhere near EU4 Ryn
 608,612=2367 # Lower Yik
-609,608,611=2365 # Orda - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+609,608,611=2365 # Orda - best approximate fit determined by overlapping provinces
 610=465 # Nogay
 612=470 # Bayuly
 612=2366 # Utva
@@ -400,8 +400,8 @@
 559=2197 # Kabardia
 561=288 # Lower Don
 564=2409 # Bahmut
-598,564,599=299 # Voronezh - note that there isn't a good fit here; this province is determined by other provinces which overlap it
-565,569,598=2408 # Lipetsk - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+598,564,599=299 # Voronezh - best approximate fit determined by overlapping provinces
+565,569,598=2408 # Lipetsk - best approximate fit determined by overlapping provinces
 596=2415 # Etkara
 596=303 # Saratov
 598=302 # Tambov
@@ -409,7 +409,7 @@
 601=1971 # Tsaritsyn
 602=2416 # Majar
 602=468 # Manych
-609,603,602=2417 # Kuma - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+609,603,602=2417 # Kuma - best approximate fit determined by overlapping provinces
 603=464 # Astrakhan
 603=2208 # Terek
 604=2201 # Alania
@@ -427,7 +427,7 @@
 554,553=285 # Cafa
 555=2447 # Mantrega
 557=287 # Kuban
-557,563,562=286 # Azov - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+557,563,562=286 # Azov - best approximate fit determined by overlapping provinces
 560=2414 # Azaraba
 562=2413 # Tyn
 563=2412 # Kyzl-Yar - with Mansur this is an awkward 2-2 fit; Emporion Kremnoi loses a number of adjacencies in becoming Kyzyl-Yar
@@ -514,7 +514,7 @@
 460=1828 # Dunji Kraji
 462,464=136 # Dalmatia
 463=139 # Hum
-491,490,466,465=138 # Zeta - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+491,490,466,465=138 # Zeta - best approximate fit determined by overlapping provinces
 465=137 # Ragusa
 465=1831 # Travunia
 466=1827 # Raska
@@ -564,6 +564,12 @@
 
 # Africa
 # ------
+
+# West Africa
+920=1158 # Kanem
+920=1159 # Bagirmi 
+920=2287 # Kotoko
+#... (this is just the bit in line with Lake Chad)
 
 # North Africa
 946=347 # Ifni
@@ -622,7 +628,7 @@
 829=2321 # Qusayr
 830=2324 # Halaib
 831=1234 # Qasr Ibrim
-831,832,833=2322 # Wadi Halfa - note that there isn't a good fit here; this province is determined by other provinces which overlap it
+831,832,833=2322 # Wadi Halfa - best approximate fit determined by overlapping provinces
 832=1228 # Dangola
 833=2323 # Sahra an Nubyah
 834,835=1232 # Suakin
@@ -641,6 +647,106 @@
 1004=360 # Qina
 1005=1233 # Kharga
 1006=1231 # Aswan
+
+# East Africa
+837=2797 # Shendy
+838=1225 # Butana
+840=2799 # Sennar
+841=2770 # Agew
+842=1223 # Gojjam
+843=2772 # Dembiya
+851,844=2771 # Semien
+845=1227 # Aksum
+847,835,846=2787 # Hamasien - best approximate fit determined by overlapping provinces
+845,847,846=2766 # Mendefera - best approximate fit determined by overlapping provinces
+846=1226 # Beja
+847=1230 # Massawa
+848=2765 # Assab
+849=1215 # Tajura
+850=2768 # Angot
+850=2764 # Ausa
+852=2769 # Lasta
+848,845,852=2767 # Enderta - best approximate fit determined by overlapping provinces
+853=1224 # Gonder
+853=1214 # Wollo
+854=2791 # Ankober
+855=1213 # Shewa
+857=2763 # Asosa
+857=2759 # Gambela
+858=2756 # Welayta
+858=2757 # Kaffa
+859=2758 # Illubabor
+860=2760 # Hadiya
+861=1218 # Sidamo
+861=1210 # Dawaro
+862=2761 # Arsi
+863=2773 # Mora
+863=1211 # Harer
+864=1212 # Zeila
+865=1208 # Degehabur
+865=2792 # Togdheer
+865,868,869=2784 # Galkayo - best approximate fit determined by overlapping provinces
+865=2778 # Werder
+866=2793 # Hargeisa
+866=1209 # Berbera
+866=2790 # Sanaag
+867=2789 # Las Khorey
+867=2786 # Bosaso
+867=2788 # Hafun
+868=1206 # Qardho
+868=2024 # Garoowe
+910=1217 # Fazughli
+911=1216 # Tegali
+912,913=2800 # Kosti
+915=1221 # El Obeid
+916,915=2802 # Kobbe
+917=1219 # Darfur
+918,1009=2801 # Medwa
+919=2932 # Waddai
+919=774 # Al-Junaynah 
+
+# Africa south of the Horn
+868=2783 # Hobyo
+869=2795 # Meregh
+869=2785 # El Buur
+869=2782 # Warsheikh
+869=2780 # Beledweyne
+869,870=1205 # Mogadishu
+870=2776 # Afgooye
+870=2775 # Merca
+870=2777 # Bardera
+870=2794 # Barawa
+871=2774 # Kismayo
+871=2796 # Pate
+871=1204 # Lamu
+872=1203 # Malinde
+873=1202 # Mombasa
+873=1200 # Tanga
+876=1199 # Bagamoyo
+876=1197 # Mzizima
+878=1196 # Kilwa
+879=1198 # Lindi
+883=1195 # Mozambique
+884=788 # Angoche
+886=1192 # Quelimane
+887=1186 # Sofala
+891,888,887=2952 # Madanda - best approximate fit determined by overlapping provinces
+888=1183 # Inhambane - LI Inhambane doesn't map well to EU4 Inhambane
+889=1182 # Matsolo
+891=1184 # Zimbabwe
+892=1185 # Butua
+892=1188 # Massapa
+893=2951 # Manikya
+893=2950 # Buhera
+894=1190 # Zumbo
+895=1187 # Sena
+895=1191 # Tete
+875,874,877=1201 # Zanzibar
+
+# Madagascar and Comoros
+880,881=1194 # Boina
+881=1792 # Antananarivo
+882=1193 # Menabe
 
 # Asia
 # ----
