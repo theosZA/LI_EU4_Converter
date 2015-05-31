@@ -1,30 +1,18 @@
 #include "EU4_Province.h"
 
-#include "EU4_CountryCollection.h"
-#include "Parser.h"
-
 namespace EU4 {
 
-Province::Province(int id, const std::string& name, std::istream& in)
+Province::Province(int id, const std::string& name, const Parser::ItemSet& historyItems)
 : id(id), name(name), baseTax(0), manpower(0), extraCost(0)
 {
-  auto items = Parser::Parse(in);
-  for (const auto& item : items)
+  for (const auto& item : historyItems)
   {
-    if (item->key == "owner")
-      ownerTag = item->value;
-    else if (item->key == "controller")
-      controllerTag = item->value;
-    else if (item->key == "add_core")
-      coreTags.insert(item->value);
-    else if (item->key == "culture")
+    if (item->key == "culture")
       culture = item->value;
     else if (item->key == "religion")
       religion = item->value;
     else if (item->key == "base_tax")
       baseTax = std::stoi(item->value);
-    else if (item->key == "trade_goods")
-      tradeGood = item->value;
     else if (item->key == "manpower")
       manpower = std::stoi(item->value);
     else if (item->key == "capital")
@@ -40,27 +28,8 @@ Province::Province(int id, const std::string& name, std::istream& in)
         if (modifier->key == "name")
           permanentModifiers.insert(modifier->value);
     }
+    HandleHistoryItem(*item);
   }
-}
-
-void Province::SetOwner(const std::string& tag)
-{
-  ownerTag = tag; 
-}
-
-void Province::SetController(const std::string& tag)
-{
-  controllerTag = tag;
-}
-
-void Province::ClearCores()
-{
-  coreTags.clear();
-}
-
-void Province::AddCore(const std::string& tag)
-{
-  coreTags.insert(tag);
 }
 
 void Province::SetCulture(const std::string& newCulture)
@@ -70,15 +39,11 @@ void Province::SetCulture(const std::string& newCulture)
 
 void Province::WriteHistory(std::ostream& out, const CountryCollection& countries) const
 {
-  out << "owner = " << ownerTag << " # " << countries.GetCountry(ownerTag).GetName() << '\n'
-      << "controller = " << controllerTag << " # " << countries.GetCountry(controllerTag).GetName() << '\n';
-  for (const auto& coreTag : coreTags)
-    out << "add_core = " << coreTag << " # " << countries.GetCountry(coreTag).GetName() << '\n';
+  OnWriteHistory(out, countries);
   out << "culture = " << culture << '\n'
       << "religion = " << religion << '\n'
       << "hre = no\n" // the HRE is not converted
       << "base_tax = " << baseTax << '\n'
-      << "trade_goods = " << tradeGood << '\n'
       << "manpower = " << manpower << '\n'
       << "capital = " << capital << '\n';
   for (const auto& techGroup : discoveredByTechGroups)

@@ -9,10 +9,13 @@
 #include "CK2_ProvinceCollection.h"
 #include "CK2_TitleCollection.h"
 #include "EU4_CountryCollection.h"
+#include "EU4_EmptyProvince.h"
+#include "EU4_SettledProvince.h"
 #include "FileUtilities.h"
 #include "LI_EU4_ProvinceMapping.h"
 #include "Log.h"
 #include "MapUtilities.h"
+#include "Parser.h"
 #include "StringUtilities.h"
 
 namespace EU4 {
@@ -53,7 +56,7 @@ int GetFirstProvince(const std::vector<int>& sourceProvinceIDs, const CK2::Provi
   return 0;
 }
 
-const std::string& DetermineProvinceOwnership(Province& destProvince, const std::vector<int>& sourceProvinceIDs,
+const std::string& DetermineProvinceOwnership(SettledProvince& destProvince, const std::vector<int>& sourceProvinceIDs,
                                               const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries)
 {
   // Count how many provinces each title (country) has.
@@ -122,22 +125,25 @@ ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProv
   LI_EU4::ProvinceMapping provinceMapping((std::ifstream(provinceMappingFileName)));
 
   LOG(LogLevel::Info) << "Reading EU4 provinces";
-  ReadProvincesFromFiles(provinceMapping.GetAllEU4ProvinceIDs(), provincePath);
+  ReadProvincesFromFiles(provinceMapping.GetAllEU4SettledProvinceIDs(), provincePath, true);
+  ReadProvincesFromFiles(provinceMapping.GetAllEU4EmptyProvinceIDs(), provincePath, false);
 
   LOG(LogLevel::Info) << "Converting provinces to EU4";
   for (auto& destProvincePair : provinces)
   {
     auto destProvinceID = destProvincePair.first;
     auto& destProvince = destProvincePair.second;
+    auto destSettledProvince = dynamic_cast<SettledProvince*>(&*destProvince);
+    if (destSettledProvince)
+    {
+      const auto& sourceProvinceIDs = provinceMapping.GetCK2ProvinceIDs(destProvinceID);
+      const auto& owner = DetermineProvinceOwnership(*destSettledProvince, sourceProvinceIDs, sourceProvinces, titles, countries);
+      LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " assigned to " << owner;
 
-    const auto& sourceProvinceIDs = provinceMapping.GetCK2ProvinceIDs(destProvinceID);
-    const auto& owner = DetermineProvinceOwnership(destProvince, sourceProvinceIDs, sourceProvinces, titles, countries);
-
-    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " assigned to " << owner;
-
-    const auto& culture = GetMajorityCulture(sourceProvinceIDs, sourceProvinces);
-    destProvince.SetCulture(culture);
-    LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " culture set to " << culture;
+      const auto& culture = GetMajorityCulture(sourceProvinceIDs, sourceProvinces);
+      destProvince->SetCulture(culture);
+      LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " culture set to " << culture;
+    }
   }
 }
 
@@ -151,7 +157,7 @@ Province& ProvinceCollection::GetProvince(int provinceID)
   auto findIter = provinces.find(provinceID);    
   if (findIter == provinces.end())
     throw std::runtime_error("Failed to find EU4 province " + std::to_string(provinceID));
-  return findIter->second;
+  return *findIter->second;
 }
 
 void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const CountryCollection& countries) const
@@ -165,12 +171,12 @@ void ProvinceCollection::WriteHistoryToFiles(const std::string& path, const Coun
     {
       auto provinceFileName = findIter->second;
       std::ofstream provinceFile(path + '\\' + provinceFileName);
-      province.WriteHistory(provinceFile, countries);
+      province->WriteHistory(provinceFile, countries);
     }
   }
 }
 
-void ProvinceCollection::ReadProvincesFromFiles(const std::set<int>& provinceIDs, const std::string& path)
+void ProvinceCollection::ReadProvincesFromFiles(const std::set<int>& provinceIDs, const std::string& path, bool settled)
 {
   auto provinceFileNames = FileUtilities::GetAllFilesInFolder(path);
   for (const auto& provinceFileName : provinceFileNames)
@@ -182,8 +188,12 @@ void ProvinceCollection::ReadProvincesFromFiles(const std::set<int>& provinceIDs
       if (splitPos != std::string::npos)
       {
         auto provinceName = TrimWhitespace(provinceFileName.substr(splitPos + 1));
-        std::ifstream provinceSourceFile(path + '\\' + provinceFileName);
-        Province province(provinceID, provinceName, provinceSourceFile);
+        auto provinceHistorySource = Parser::Parse(std::ifstream(path + '\\' + provinceFileName));
+        std::unique_ptr<Province> province;
+        if (settled)
+          province.reset(new SettledProvince(provinceID, provinceName, provinceHistorySource));
+        else
+          province.reset(new EmptyProvince(provinceID, provinceName, provinceHistorySource));
         provinces.emplace(provinceID, std::move(province));
         provinceHistoryFileNames[provinceID] = provinceFileName;
       }

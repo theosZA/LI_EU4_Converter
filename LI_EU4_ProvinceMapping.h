@@ -15,7 +15,9 @@ class ProvinceMapping
     ProvinceMapping(std::istream&);
 
     // Returns the IDs of all EU4 provinces mapped to from CK2 provinces.
-    std::set<int> GetAllEU4ProvinceIDs() const;
+    std::set<int> GetAllEU4SettledProvinceIDs() const;
+    // Returns the IDs of all EU4 provinces that are explicitly designated as empty provinces.
+    std::set<int> GetAllEU4EmptyProvinceIDs() const;
     // Returns all CK2 provinces that map to the given EU4 province.
     const std::vector<int>& GetCK2ProvinceIDs(int eu4ProvinceID) const;
 

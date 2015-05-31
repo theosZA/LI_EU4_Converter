@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="LI_EU4_Converter.cpp" />
     <ClCompile Include="EU4_Country.cpp" />
-    <ClCompile Include="EU4_Province.cpp" />
     <ClCompile Include="EU4_ProvinceCollection.cpp" />
     <ClCompile Include="FileUtilities.cpp" />
     <ClCompile Include="StringUtilities.cpp" />
@@ -27,10 +26,12 @@
     <ClCompile Include="EU4_Culture.cpp" />
     <ClCompile Include="EU4_CultureGroup.cpp" />
     <ClCompile Include="EU4_CultureCollection.cpp" />
+    <ClCompile Include="EU4_SettledProvince.cpp" />
+    <ClCompile Include="EU4_Province.cpp" />
+    <ClCompile Include="EU4_EmptyProvince.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
-    <ClInclude Include="EU4_Province.h" />
     <ClInclude Include="EU4_ProvinceCollection.h" />
     <ClInclude Include="FileUtilities.h" />
     <ClInclude Include="StringUtilities.h" />
@@ -55,5 +56,8 @@
     <ClInclude Include="EU4_CultureGroup.h" />
     <ClInclude Include="EU4_CultureCollection.h" />
     <ClInclude Include="MapUtilities.h" />
+    <ClInclude Include="EU4_EmptyProvince.h" />
+    <ClInclude Include="EU4_SettledProvince.h" />
+    <ClInclude Include="EU4_Province.h" />
   </ItemGroup>
 </Project>

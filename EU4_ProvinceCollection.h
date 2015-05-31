@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 
@@ -33,9 +34,9 @@ class ProvinceCollection
 
   private:
     // Reads province history for the given provinces from files in the given path.
-    void ReadProvincesFromFiles(const std::set<int>& provinceIDs, const std::string& path);
+    void ReadProvincesFromFiles(const std::set<int>& provinceIDs, const std::string& path, bool settled);
 
-    std::map<int, Province> provinces;
+    std::map<int, std::unique_ptr<Province>> provinces;
     std::map<int, std::string> provinceHistoryFileNames;
 };
 

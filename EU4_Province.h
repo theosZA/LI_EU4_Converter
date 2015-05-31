@@ -1,47 +1,43 @@
 #pragma once
 
-#include <functional>
-#include <istream>
 #include <ostream>
 #include <set>
 #include <string>
+
+#include "Parser.h"
 
 namespace EU4 {
 
 class CountryCollection;
 
-// A settled province in EU4.
+// Base class for any EU4 province, settled or not.
 class Province
 {
   public:
     // Constructor based on an existing EU4 province history.
-    Province(int id, const std::string& name, std::istream&);
-
-    void SetOwner(const std::string& tag);
-    void SetController(const std::string& tag);
-    void ClearCores();
-    void AddCore(const std::string& tag);
-
-    void SetCulture(const std::string& culture);
+    Province(int id, const std::string& name, const Parser::ItemSet& historyItems);
 
     int GetID() const { return id; }
     const std::string& GetName() const { return name; }
 
-    // Writes the province's history including current situation such as current owner and religion.
+    void SetCulture(const std::string& culture);
+
+    // Writes the province's history including for example the current religion.
     void WriteHistory(std::ostream&, const CountryCollection&) const;
+
+  protected:
+    // Child classes to handle the given item from an EU4 province history.
+    virtual void HandleHistoryItem(const Parser::Item& historyItem) {}
+    // Child classes to add their own content such as owner info or native info.
+    virtual void OnWriteHistory(std::ostream&, const CountryCollection&) const {}
 
   private:
     int id;
     std::string name;
 
-    std::string ownerTag;
-    std::string controllerTag;
-    std::set<std::string> coreTags;
-
     std::string culture;
     std::string religion;
     int baseTax;
-    std::string tradeGood;
     int manpower;
     std::string capital;
     int extraCost;

@@ -27,7 +27,7 @@ void World::CreateMod(const std::string& name, const std::string& eu4ModPath, co
   std::string historyCountriesPath = FileUtilities::MakeFolder(historyPath + "\\countries");
   std::string historyProvincesPath = FileUtilities::MakeFolder(historyPath + "\\provinces");
   std::string localisationPath = FileUtilities::MakeFolder(convertedModPath + "\\localisation");
-  std::string localisationReplacementsPath = FileUtilities::MakeFolder(localisationPath + "\\replacements");
+  std::string localisationReplacementsPath = FileUtilities::MakeFolder(localisationPath + "\\replace");
   std::string graphicsPath = FileUtilities::MakeFolder(convertedModPath + "\\gfx");
   std::string flagsPath = FileUtilities::MakeFolder(graphicsPath + "\\flags");
 

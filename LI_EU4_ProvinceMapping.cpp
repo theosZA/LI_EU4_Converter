@@ -26,14 +26,27 @@ ProvinceMapping::ProvinceMapping(std::istream& in)
 {
   auto items = Parser::Parse(in);
   for (const auto& item : items)
-    mapping.emplace(std::stoi(item->value), SplitIntList(item->key));
+    if (item->key == "x")
+      mapping.emplace(std::stoi(item->value), std::vector<int> {});
+    else
+      mapping.emplace(std::stoi(item->value), SplitIntList(item->key));
 }
 
-std::set<int> ProvinceMapping::GetAllEU4ProvinceIDs() const
+std::set<int> ProvinceMapping::GetAllEU4SettledProvinceIDs() const
 {
   std::set<int> eu4ProvinceIDs;
   for (const auto& mappingPair : mapping)
-    eu4ProvinceIDs.insert(mappingPair.first);
+    if (!mappingPair.second.empty())
+      eu4ProvinceIDs.insert(mappingPair.first);
+  return eu4ProvinceIDs;
+}
+
+std::set<int> ProvinceMapping::GetAllEU4EmptyProvinceIDs() const
+{
+  std::set<int> eu4ProvinceIDs;
+  for (const auto& mappingPair : mapping)
+    if (mappingPair.second.empty())
+      eu4ProvinceIDs.insert(mappingPair.first);
   return eu4ProvinceIDs;
 }
 
