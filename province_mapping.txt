@@ -565,11 +565,105 @@
 # Africa
 # ------
 
-# West Africa
+# Lake Tchad Central Africa
 920=1158 # Kanem
 920=1159 # Bagirmi 
 920=2287 # Kotoko
-#... (this is just the bit in line with Lake Chad)
+921=2474 # Tajhari
+921=2475 # Djaddo
+922=2277 # Kawar
+922=2284 # Manga
+922=1157 # Borno
+922=2283 # Bedde
+922=2282 # Muniyo
+922=2280 # Biram
+923=1148 # Gobir
+923=1150 # Zameara
+923=1149 # Katsina
+923=2279 # Daura
+923=1155 # Kano
+
+# Interior West Africa - east of Timbuktu
+927=1137 # Wagadugu
+927=2267 # Tenkodogo
+927=2256 # Dagbon
+927=1136 # Gurma
+927=1143 # Borgu
+927=2266 # Bilanga
+927=2265 # Liptako
+928=2278 # Kebbi
+928=2270 # Dallol
+928=1142 # Dendi
+928=2269 # Zarmaganda
+929=2268 # Aribanda
+929=1133 # Gao
+929=2262 # Karabara
+929=2264 # Hombori
+929=2263 # Haayre
+983=1130 # Tadmekka
+983=2271 # Azawagh
+
+# Coastal West Africa
+924=1097 # Fernando Po
+925=2294 # Warri
+925=2289 # Ondo
+925=1147 # Benin
+925=1146 # Ife
+925=1144 # Oyo
+925=2292 # Moshi
+925=2291 # Ketu
+925=2290 # Ijebu
+926=1141 # Whydah
+926=1140 # Abomey
+926=2295 # Atakora
+926=1138 # Kumasi
+926=1139 # Gold Coast
+932=2258 # Cape Coast
+932=2257 # Denkyira
+932=2255 # Gyamman
+933=1126 # Ivory Coast
+933=1119 # Grain Coast
+933=2242 # Karou
+934=1118 # Sierra Leone
+934=2241 # Beafada
+934=1117 # Futa Jallon
+935=1114 # Gabu
+935=2238 # Kantor
+941=2239 # Siine
+941=1116 # Wolof
+942=1113 # Cayor
+942=1112 # Trarza
+
+# Interior West Africa - west of Gao
+930=1132 # Timbuktu
+930=2260 # Mema
+930=2259 # Bara
+930=2261 # Kala
+930=1131 # Massina
+931=2253 # Gwiriko
+931=1125 # Kong
+931=2254 # Bonoman
+931=2252 # Lobi
+931=2250 # Bendugu
+931=1134 # Jenne
+931=1135 # Yatenga
+936=1120 # Bambuk - LI Bambuk doesn't map well to EU4 Bambuk
+936=2248 # Do
+936=1124 # Joma
+936=1121 # Bure
+936=1122 # Bagoe
+936=2249 # Sibiridugu
+937=2245 # Wagadu
+937=1123 # Segu
+938=2243 # Termes
+938=2246 # Baghena
+939=2244 # Tagant
+940=2237 # Tekrur
+940=2240 # Galam - LI Bambuk doesn't map well to EU4 Bambuk
+943=1115 # Brakna
+981=2247 # Hodh
+982=1129 # Azawad
+982=1128 # Taudeni
 
 # North Africa
 946=347 # Ifni
@@ -704,6 +798,7 @@
 918,1009=2801 # Medwa
 919=2932 # Waddai
 919=774 # Al-Junaynah 
+919=2288 # Yao
 
 # Africa south of the Horn
 868=2783 # Hobyo
