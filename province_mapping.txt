@@ -840,7 +840,7 @@
 895=1187 # Sena
 895=1191 # Tete
 875,874,877=1201 # Zanzibar
-
+ 
 # Madagascar and Comoros
 880,881=1194 # Boina
 881=1792 # Antananarivo
@@ -849,8 +849,129 @@
 # Asia
 # ----
 
-# Anatolia
-# 774,516= # Biga
+# Anatolia, Ottoman area
+774,516=2296 # Biga
+761=2303 # Malatya
+766,767=2304 # Canik
+767,797,787=1846 # Amasya - best approximate fit determined by overlapping provinces
+770,768=325 # Kastamonu
+769=328 # Sinop
+771=316 # Kocaeli
+771=2299 # Bolu
+773,772=317 # Hudavendigar
+776=318 # Sugla
+780,778=319 # Mentese
+781=2297 # Saruhan
+782=322 # Kutahya
+783=1848 # Hamid
+784=2298 # Teke
+786,785=326 # Ankara
+787=2300 # Bozok
+790,788=323 # Konya
+791,789,790=324 # Karaman
+792=2302 # Icel
+795,800=327 # Adana
+797,796=2301 # Kayseri
+798=329 # Sivas
+799=332 # Maras
+
+# Anatolia east of the Ottomans, south of the Caucasus
+678=424 # Ardabil
+681=2202 # Melikates
+681=416 # Tabriz
+682=420 # Ganja
+683=421 # Shirvan
+684=2203 # Kahketi - LI Kakheti doesn't map well to EU4 Kahketi
+686,764,689,688=422 # Imereti - best approximate fit determined by overlapping provinces
+687=1856 # Abkhazia
+688,686=462 # Mingrelia
+689,685=423 # Kartli - LI Kakheti doesn't map well to EU4 Kahketi
+690=419 # Yerevan
+690,764=2204 # Samtskhe
+691=2205 # Nakhchivan
+692=2206 # Urmia
+736=2306 # Mush
+737=418 # Diyarbekir
+741,1567,757=2314 # Rahba
+759,760=407 # Rakka
+1264,762=2305 # Erzincan
+762,763=331 # Erzurum
+763=2307 # Van
+764=2196 # Guria
+765=330 # Trebizond
+
+# Levant
+747,745=2327 # Ma'an
+749,821,748,818=380 # Karak
+813,751,750=381 # Ajloun
+809,808,752=382 # Dimashq
+755,1558,753,754=405 # Tadmor
+756,1556,758=1849 # Hamah
+802,804=2313 # Antakiya
+803,801=377 # Halab
+806,805=378 # Tarabulus al-Sham
+810,811,807=1855 # Sayda
+814,815,812=1854 # Naablus
+819,816,820=364 # Ghazzah
+817,818=379 # al-Quds
+822=365 # Sina
+
+# Arabia
+702=394 # Al-Qatif
+703=396 # Bahrain
+704=2347 # Hofuf
+704=395 # Qatar
+704=2333 # Abd Al-Qays
+705=404 # Liwa
+705=397 # Bani Yas
+705=398 # Qawasim
+706=399 # Suhar
+706=403 # Nizwa
+707=400 # Muscat
+708=2341 # Sharqiyah
+708=2342 # Wusta
+709=401 # Dhofar
+710=1099 # Socotra
+711=402 # Mahra
+712=2343 # Hadramawt
+712=389 # Kinda
+713=388 # Aden
+713=2344 # Al Jawf
+716,713,714=390 # Sana'a - best approximate fit determined by overlapping provinces
+715,714=387 # Mokha
+717=391 # Najran
+717,718,716=2346 # Jazan
+718=386 # Asir
+718=2332 # Truba
+719=2330 # Ma Din Sulaym
+719=385 # Mecca
+719=2331 # Jeddah
+720=2337 # Unaizah
+721=392 # Al-Arid
+722=2338 # Hafar
+723=393 # Jabal Shammar
+724=2329 # Yanbu
+724=384 # Medina
+725,746=383 # Tabuk
+726=2328 # Tayma
+
+# Persia west of the Timurids
+693=2207 # Maragheh
+694=415 # Shahrizor
+697,698=2312 # Wasit
+673=2209 # Ilam
+699=408 # Basra
+701,700=2340 # Grane
+730,1560=2311 # Samawah
+731=410 # Bagdad
+729,732=409 # Hillah
+733=411 # Mawsil
+734,740=406 # As Sahiliyah
+694,734,731=2310 # Tikrit
+735,738=2308 # Cizre/Jazirat Ibn Umar
+739=2309 # Sinjar
+
+# Timurid Persia including Tabarestan
 
 # Colonizable provinces
 # ---------------------
@@ -874,6 +995,10 @@ x=2285
 x=2286
 x=2288
 x=2293
+x=2335
+x=2336
+x=2339
+x=2345
 x=2449
 x=2456
 x=2457
