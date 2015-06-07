@@ -6,6 +6,7 @@
 
 namespace CK2 {
 class Character;
+class Dynasty;
 } // CK2
 
 namespace EU4 {
@@ -15,6 +16,8 @@ class Ruler
 {
   public:
     Ruler(const CK2::Character&);
+
+    void SetDynasty(const CK2::Dynasty&);
 
     void WriteToStream(std::ostream&) const;
 

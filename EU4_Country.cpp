@@ -1,11 +1,12 @@
 #include "EU4_Country.h"
 
 #include "CK2_CharacterCollection.h"
+#include "CK2_DynastyCollection.h"
 #include "CK2_Title.h"
 
 namespace EU4 {
 
-Country::Country(const std::string& tag, const CK2::Title& title, const CK2::CharacterCollection& characters)
+Country::Country(const std::string& tag, const CK2::Title& title, const CK2::CharacterCollection& characters, const CK2::DynastyCollection& dynasties)
 : tag(tag), 
 #ifdef MONOCOLOUR_TEST
   name(tag),
@@ -13,11 +14,18 @@ Country::Country(const std::string& tag, const CK2::Title& title, const CK2::Cha
   name(title.name), 
 #endif
   adjective(title.adjective), 
-  colour(title.colour),
-  religion(characters.GetCharacter(title.holderID).GetReligion()),
-  primaryCulture(characters.GetCharacter(title.holderID).GetCulture()),
-  ruler(characters.GetCharacter(title.holderID))
-{}
+  colour(title.colour)
+{
+  if (title.holderID != 0)
+  {
+    const auto& rulerCharacter = characters.GetCharacter(title.holderID);
+    ruler.reset(new Ruler(characters.GetCharacter(title.holderID)));
+    religion = rulerCharacter.religion;
+    primaryCulture = rulerCharacter.culture;
+    if (rulerCharacter.dynasty != 0)
+      ruler->SetDynasty(dynasties.GetDynasty(rulerCharacter.dynasty));
+  }
+}
 
 void Country::WriteCommonInfo(std::ostream& out) const
 {
@@ -34,11 +42,13 @@ void Country::WriteCommonInfo(std::ostream& out) const
 void Country::WriteHistory(std::ostream& out) const
 {
   out << "government = feudal_monarchy\n"
-      << "technology_group = western\n"
-      << "religion = " << religion << '\n'
-      << "primary_culture = " << primaryCulture << '\n'
-      << "capital = 1\n\n";
-  ruler.WriteToStream(out);
+      << "technology_group = western\n";
+  if (!religion.empty())
+    out << "religion = " << religion << '\n';
+  if (!primaryCulture.empty())
+    out << "primary_culture = " << primaryCulture << '\n';
+  if (ruler)
+    ruler->WriteToStream(out);
 }
 
 void Country::WriteLocalisation(std::ostream& out) const

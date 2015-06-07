@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <sstream>
+#include <stdexcept>
 
 #include "StringUtilities.h"
 
@@ -64,6 +65,14 @@ ItemSet Parse(std::istream& in)
   }
 
   return items;
+}
+
+const Item& GetItem(const ItemSet& items, const std::string& key)
+{
+  for (const auto& item : items)
+    if (item->key == key)
+      return *item;
+  throw std::runtime_error("Failed to find item with key '" + key + "'");
 }
 
 } // Parser

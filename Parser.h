@@ -24,4 +24,7 @@ struct Item
 // Reads an EU4 file, splitting it up into items (normally from one item per line).
 ItemSet Parse(std::istream&);
 
+// Returns the item in a item set with the given key.
+const Item& GetItem(const ItemSet&, const std::string& key);
+
 } // Parser

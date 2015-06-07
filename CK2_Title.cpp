@@ -9,7 +9,8 @@ namespace CK2 {
 Title::Title(const Parser::Item& titleItem, const Localisation& localisation, const ProvinceCollection& provinces)
 : id(titleItem.key),
   name(localisation.GetLocalisation(id, 0)),
-  adjective(localisation.GetLocalisation(id + "_adj", 0))
+  adjective(localisation.GetLocalisation(id + "_adj", 0)),
+  holderID(0)
 {
   for (const auto& titleSubItem : titleItem.items)
   {

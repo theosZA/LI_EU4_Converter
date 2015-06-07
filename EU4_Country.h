@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <ostream>
 #include <string>
 
@@ -8,6 +9,7 @@
 
 namespace CK2 {
 class CharacterCollection;
+class DynastyCollection;
 class Title;
 } // CK2
 
@@ -18,7 +20,7 @@ class Country
 {
   public:
     // Creates an EU4 country from a CK2 (top-level) title.
-    Country(const std::string& tag, const CK2::Title&, const CK2::CharacterCollection&);
+    Country(const std::string& tag, const CK2::Title&, const CK2::CharacterCollection&, const CK2::DynastyCollection&);
 
     // Returns this country's tag.
     const std::string& GetTag() const { return tag; }
@@ -55,7 +57,7 @@ class Country
     std::string religion;
     std::string primaryCulture;
     // TBD: capital province
-    Ruler ruler;
+    std::shared_ptr<Ruler> ruler;
     // TBD: rulers/heirs (other than the current ruler)
 };
 

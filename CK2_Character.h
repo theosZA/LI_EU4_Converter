@@ -11,6 +11,7 @@ struct Item;
 } // Parser
 
 namespace EU4 {
+class Country;
 class Ruler;
 } // EU4
 
@@ -30,9 +31,7 @@ class Character
     int GetIntrigue() const;
     int GetLearning() const;
 
-    const std::string& GetReligion() const { return religion; }
-    const std::string& GetCulture() const { return culture; }
-
+    friend class EU4::Country;
     friend class EU4::Ruler;
 
   private:

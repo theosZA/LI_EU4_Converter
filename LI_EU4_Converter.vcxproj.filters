@@ -33,6 +33,8 @@
     <ClCompile Include="CK2_Character.cpp" />
     <ClCompile Include="CK2_CharacterCollection.cpp" />
     <ClCompile Include="EU4_Ruler.cpp" />
+    <ClCompile Include="CK2_Dynasty.cpp" />
+    <ClCompile Include="CK2_DynastyCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -67,5 +69,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="CK2_CharacterCollection.h" />
     <ClInclude Include="EU4_Ruler.h" />
+    <ClInclude Include="CK2_Dynasty.h" />
+    <ClInclude Include="CK2_DynastyCollection.h" />
   </ItemGroup>
 </Project>

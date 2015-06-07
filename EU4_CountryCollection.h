@@ -8,6 +8,7 @@
 
 namespace CK2 {
 class CharacterCollection;
+class DynastyCollection;
 class TitleCollection;
 } // CK2
 
@@ -20,7 +21,7 @@ class CountryCollection
     // Creates an EU4 collection of countries from the top-level titles
     // in the CK2 title collection. The mapping from CK2 titles to EU4 countries
     // is written to the provided TitleCountryMapping.
-    CountryCollection(const CK2::TitleCollection&, const CK2::CharacterCollection&);
+    CountryCollection(const CK2::TitleCollection&, const CK2::CharacterCollection&, const CK2::DynastyCollection&);
 
     const Country& GetCountry(const std::string& countryTag) const;
     Country& GetCountry(const std::string& countryTag);

@@ -1,6 +1,7 @@
 #include "EU4_Ruler.h"
 
 #include "CK2_Character.h"
+#include "CK2_Dynasty.h"
 
 namespace EU4 {
 
@@ -24,7 +25,6 @@ int ConvertScore(int ck2Score)
 
 Ruler::Ruler(const CK2::Character& character)
 : name(character.birthName),
-  dynasty("unknown"),
   female(character.female),
   birthDate(character.birthDate),
   ruleDate(1444, 11, 11),
@@ -34,13 +34,19 @@ Ruler::Ruler(const CK2::Character& character)
   military(ConvertScore(character.GetMilitary()))
 {}
 
+void Ruler::SetDynasty(const CK2::Dynasty& newDynasty)
+{
+  dynasty = newDynasty.GetName();
+}
+
 void Ruler::WriteToStream(std::ostream& out) const
 {
   out << ruleDate << " = {\n"
       << "  monarch = {\n"
-      << "    name = \"" << name << "\"\n"
-      << "    dynasty = \"" << dynasty << "\"\n"
-      << "    birth_date = " << birthDate << '\n'
+      << "    name = \"" << name << "\"\n";
+  if (!dynasty.empty())
+    out << "    dynasty = \"" << dynasty << "\"\n";
+  out << "    birth_date = " << birthDate << '\n'
       << "    adm = " << admin << '\n'
       << "    dip = " << diplo << '\n'
       << "    mil = " << military << '\n';

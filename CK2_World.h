@@ -5,6 +5,7 @@
 
 #include "CK2_CharacterCollection.h"
 #include "CK2_CultureCollection.h"
+#include "CK2_DynastyCollection.h"
 #include "CK2_Localisation.h"
 #include "CK2_ProvinceCollection.h"
 #include "CK2_TitleCollection.h"
@@ -26,6 +27,7 @@ class World
 
   private:
     Localisation localisation;
+    DynastyCollection dynasties;
     std::unique_ptr<CharacterCollection> characters;
     std::unique_ptr<CultureCollection> cultures;
     std::unique_ptr<ProvinceCollection> provinces;
