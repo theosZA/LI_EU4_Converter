@@ -41,6 +41,18 @@ Character::Character(const Parser::Item& characterItem)
       religion = StripQuotes(subItem->value);
     else if (subItem->key == "culture")
       culture = StripQuotes(subItem->value);
+    else if (subItem->key == "demesne")
+      for (const auto& demesneItem : subItem->items)
+      {
+        if (demesneItem->key == "capital")
+          capitalHolding = StripQuotes(demesneItem->value);
+        else if (demesneItem->key == "primary")
+          for (const auto& primaryItem : demesneItem->items)
+          {
+            if (primaryItem->key == "title")
+              primaryTitle = StripQuotes(primaryItem->value);
+          }
+      }
   }
 }
 

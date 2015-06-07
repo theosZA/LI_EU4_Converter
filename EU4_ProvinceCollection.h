@@ -8,6 +8,7 @@
 #include "EU4_Province.h"
 
 namespace CK2 {
+class CharacterCollection;
 class ProvinceCollection;
 class TitleCollection;
 }
@@ -23,8 +24,8 @@ class ProvinceCollection
     // Constructor creates all the EU4 provinces from the countries and CK2 provinces and titles
     // using the mapping in the specified file. The province baseline comes from the files in the
     // given province path.
-    ProvinceCollection(const CK2::ProvinceCollection&, const CK2::TitleCollection&, const CountryCollection&,
-                       const std::string& provinceMappingFileName, const std::string& provincePath);
+    ProvinceCollection(const CK2::ProvinceCollection&, const CK2::TitleCollection&, const CK2::CharacterCollection& characters,
+                       const CountryCollection&, const std::string& provinceMappingFileName, const std::string& provincePath);
 
     const Province& GetProvince(int provinceID) const;
     Province& GetProvince(int provinceID);

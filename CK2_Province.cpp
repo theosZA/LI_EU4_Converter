@@ -30,12 +30,12 @@ void Province::UpdateFromHistory(const Parser::ItemSet& historyItems)
       countyLevelTitleID = historyItem->value;
 }
 
-std::string Province::GetTopLevelTitle(const TitleCollection& titles) const
+std::string Province::GetTopLevelTitle(const TitleCollection& titles, const CharacterCollection& characters) const
 {
   if (baronyLevelTitles.empty())
     return "";
 
-  return titles.GetTopLevelLiege(baronyLevelTitles.front());
+  return titles.GetTopLevelLiege(baronyLevelTitles.front(), characters);
 }
 
 } // CK2

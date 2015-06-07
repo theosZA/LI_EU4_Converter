@@ -9,6 +9,7 @@
 
 namespace CK2 {
 
+class CharacterCollection;
 class Localisation;
 class ProvinceCollection;
 
@@ -22,7 +23,7 @@ class TitleCollection
     void UpdateTitles(const Parser::ItemSet& items);
 
     // Returns the top-level liege of the given title; may be the same title.
-    std::string GetTopLevelLiege(const std::string& titleID) const;
+    std::string GetTopLevelLiege(const std::string& titleID, const CharacterCollection&) const;
     // Returns all top-level titles in this collection.
     std::vector<std::string> GetAllTopLevelTitles() const;
 

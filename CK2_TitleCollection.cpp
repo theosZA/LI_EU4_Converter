@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "CK2_CharacterCollection.h"
+
 namespace CK2 {
 
 TitleCollection::TitleCollection(const Parser::Item& titlesItem, const Localisation& localisation, const ProvinceCollection& provinces)
@@ -19,22 +21,29 @@ void TitleCollection::UpdateTitles(const Parser::ItemSet& items)
   UpdateTitle(items);
 }
 
-std::string TitleCollection::GetTopLevelLiege(const std::string& titleID) const
+std::string TitleCollection::GetTopLevelLiege(const std::string& titleID, const CharacterCollection& characters) const
 {
   std::string highestLiege = titleID;
   bool topLevelReached = false;
   while (!topLevelReached)
   {
-    auto findIter = titles.find(highestLiege);
-    if (findIter == titles.end())
-      throw std::runtime_error("Title " + highestLiege + " not found when determing top-level liege for " + titleID);
-    const std::string& newHighestLiege = findIter->second.GetLiege();
+    const auto& currentTitle = GetTitle(highestLiege);
+    const std::string& newHighestLiege = currentTitle.GetLiege();
     if (newHighestLiege.empty())
       topLevelReached = true;
     else
       highestLiege = newHighestLiege;
   }
-  return highestLiege;
+
+  auto holderID = GetTitle(highestLiege).GetHolderID();
+  if (holderID == 0)
+    return highestLiege;
+  
+  const auto& primaryTitle = characters.GetCharacter(holderID).GetPrimaryTitle();
+  if (primaryTitle.empty())
+    return highestLiege;
+
+  return primaryTitle;
 }
 
 std::vector<std::string> TitleCollection::GetAllTopLevelTitles() const

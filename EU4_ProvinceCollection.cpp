@@ -57,13 +57,14 @@ int GetFirstProvince(const std::vector<int>& sourceProvinceIDs, const CK2::Provi
 }
 
 const std::string& DetermineProvinceOwnership(SettledProvince& destProvince, const std::vector<int>& sourceProvinceIDs,
-                                              const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries)
+                                              const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CK2::CharacterCollection& characters,
+                                              const CountryCollection& countries)
 {
   // Count how many provinces each title (country) has.
   auto provincesOwnedByTitle = GetProvinceFeatureCounts(sourceProvinceIDs, sourceProvinces, 
       [&](const CK2::Province& sourceProvince) 
       {
-        return sourceProvince.GetTopLevelTitle(titles); 
+        return sourceProvince.GetTopLevelTitle(titles, characters); 
       });
 
   // Award cores to all countries with provinces.
@@ -82,7 +83,7 @@ const std::string& DetermineProvinceOwnership(SettledProvince& destProvince, con
   int bestProvinceID = GetFirstProvince(sourceProvinceIDs, sourceProvinces,
       [&](const CK2::Province& sourceProvince) 
       {
-        return HasValue(bestTitles, sourceProvince.GetTopLevelTitle(titles));
+        return HasValue(bestTitles, sourceProvince.GetTopLevelTitle(titles, characters));
       });
   if (bestProvinceID == 0)
   {
@@ -90,7 +91,7 @@ const std::string& DetermineProvinceOwnership(SettledProvince& destProvince, con
     return noOwner;
   }
 
-  const auto& bestOwnerTitle = sourceProvinces.GetProvince(bestProvinceID).GetTopLevelTitle(titles);
+  const auto& bestOwnerTitle = sourceProvinces.GetProvince(bestProvinceID).GetTopLevelTitle(titles, characters);
   const auto& bestOwnerTag = countries.GetCountryByTitle(bestOwnerTitle).GetTag();
   destProvince.SetOwner(bestOwnerTag);
   destProvince.SetController(bestOwnerTag);
@@ -118,8 +119,8 @@ const std::string& GetMajorityCulture(const std::vector<int>& sourceProvinceIDs,
   return sourceProvinces.GetProvince(bestProvinceID).GetCulture();
 }
 
-ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CountryCollection& countries,
-                                       const std::string& provinceMappingFileName, const std::string& provincePath)
+ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProvinces, const CK2::TitleCollection& titles, const CK2::CharacterCollection& characters,
+                                       const CountryCollection& countries, const std::string& provinceMappingFileName, const std::string& provincePath)
 {
   LOG(LogLevel::Info) << "Reading province mapping";
   LI_EU4::ProvinceMapping provinceMapping((std::ifstream(provinceMappingFileName)));
@@ -137,7 +138,7 @@ ProvinceCollection::ProvinceCollection(const CK2::ProvinceCollection& sourceProv
     if (destSettledProvince)
     {
       const auto& sourceProvinceIDs = provinceMapping.GetCK2ProvinceIDs(destProvinceID);
-      const auto& owner = DetermineProvinceOwnership(*destSettledProvince, sourceProvinceIDs, sourceProvinces, titles, countries);
+      const auto& owner = DetermineProvinceOwnership(*destSettledProvince, sourceProvinceIDs, sourceProvinces, titles, characters, countries);
       LOG(LogLevel::Debug) << "EU4 province " << destProvinceID << " assigned to " << owner;
 
       const auto& culture = GetMajorityCulture(sourceProvinceIDs, sourceProvinces);

@@ -12,7 +12,7 @@ namespace EU4 {
 World::World(const CK2::World& source, const std::string& eu4Path)
 : cultures(*source.cultures, source.localisation),
   countries(*source.titles, *source.characters, source.dynasties),
-  provinces(*source.provinces, *source.titles, countries, "province_mapping.txt", eu4Path + "\\history\\provinces")
+  provinces(*source.provinces, *source.titles, *source.characters, countries, "province_mapping.txt", eu4Path + "\\history\\provinces")
 {}
 
 void World::CreateMod(const std::string& name, const std::string& eu4ModPath, const std::string& ck2ModSubPath)

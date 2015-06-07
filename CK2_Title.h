@@ -22,6 +22,7 @@ class Title
 
     const std::string& GetID() const { return id; }
     const std::string& GetLiege() const { return liegeTitle; }
+    const int GetHolderID() const { return holderID; }
 
     void SetColour(Colour newColour) { colour = newColour; }
 

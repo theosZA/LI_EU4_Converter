@@ -25,6 +25,8 @@ class Character
 
     int GetID() const { return id; }
 
+    const std::string& GetPrimaryTitle() const { return primaryTitle; }
+
     int GetDiplomacy() const;
     int GetStewardship() const;
     int GetMilitary() const;
@@ -38,6 +40,9 @@ class Character
     int id;
     std::string birthName;
     int dynasty;
+
+    std::string primaryTitle;
+    std::string capitalHolding;
 
     bool female;
     Date birthDate;

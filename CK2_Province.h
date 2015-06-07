@@ -7,6 +7,7 @@
 
 namespace CK2 {
 
+class CharacterCollection;
 class TitleCollection;
 
 // Represents a CK2 province (which may include multiple holdings).
@@ -22,7 +23,7 @@ class Province
     const std::string& GetName() const { return name; }
     const std::string& GetCulture() const { return culture; }
 
-    std::string GetTopLevelTitle(const TitleCollection&) const;
+    std::string GetTopLevelTitle(const TitleCollection&, const CharacterCollection&) const;
     const std::string& GetCountyLevelTitleID() const { return countyLevelTitleID; }
 
   private:
