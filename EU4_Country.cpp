@@ -1,11 +1,11 @@
 #include "EU4_Country.h"
 
+#include "CK2_CharacterCollection.h"
 #include "CK2_Title.h"
 
 namespace EU4 {
 
-// TBD: name and adjective should come from title
-Country::Country(const std::string& tag, const CK2::Title& title)
+Country::Country(const std::string& tag, const CK2::Title& title, const CK2::CharacterCollection& characters)
 : tag(tag), 
 #ifdef MONOCOLOUR_TEST
   name(tag),
@@ -13,7 +13,8 @@ Country::Country(const std::string& tag, const CK2::Title& title)
   name(title.name), 
 #endif
   adjective(title.adjective), 
-  colour(title.colour)
+  colour(title.colour),
+  ruler(characters.GetCharacter(title.holderID))
 {}
 
 void Country::WriteCommonInfo(std::ostream& out) const
@@ -34,17 +35,8 @@ void Country::WriteHistory(std::ostream& out) const
       << "technology_group = western\n"
       << "religion = catholic\n"
       << "primary_culture = english\n"
-      << "capital = 1\n\n"
-      << "1440.1.1 = {\n"
-      << "  monarch = {\n"
-      << "    name = \"Tester\"\n"
-      << "    dynasty = \"McTestison\"\n"
-      << "    birth_date = 1400.1.1\n"
-      << "    adm = 6\n"
-      << "    dip = 5\n"
-      << "    mil = 4\n"
-      << "  }\n"
-      << "}\n";
+      << "capital = 1\n\n";
+  ruler.WriteToStream(out);
 }
 
 void Country::WriteLocalisation(std::ostream& out) const

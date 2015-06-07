@@ -11,7 +11,7 @@ namespace EU4 {
 
 World::World(const CK2::World& source, const std::string& eu4Path)
 : cultures(*source.cultures, source.localisation),
-  countries(*source.titles),
+  countries(*source.titles, *source.characters),
   provinces(*source.provinces, *source.titles, countries, "province_mapping.txt", eu4Path + "\\history\\provinces")
 {}
 

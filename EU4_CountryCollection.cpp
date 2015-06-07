@@ -18,7 +18,7 @@ std::string NormalizeName(const std::string& name)
   return normalized;
 }
 
-CountryCollection::CountryCollection(const CK2::TitleCollection& titles)
+CountryCollection::CountryCollection(const CK2::TitleCollection& titles, const CK2::CharacterCollection& characters)
 {
   LOG(LogLevel::Info) << "Creating EU4 countries";
   auto topLevelTitles = titles.GetAllTopLevelTitles();
@@ -26,7 +26,7 @@ CountryCollection::CountryCollection(const CK2::TitleCollection& titles)
   {
     const auto& title = titles.GetTitle(titleID);
     auto countryTag = titleCountryMapping.AddTitleAsNewCountry(titleID);
-    EU4::Country country(countryTag, title);
+    EU4::Country country(countryTag, title, characters);
     countries.emplace(countryTag, std::move(country));
     LOG(LogLevel::Debug) << "CK2 title " << titleID << " converted to country tag " << countryTag;
   }

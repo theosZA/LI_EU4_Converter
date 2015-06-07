@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 
+#include "CK2_CharacterCollection.h"
 #include "CK2_CultureCollection.h"
 #include "CK2_Localisation.h"
 #include "CK2_ProvinceCollection.h"
@@ -25,6 +26,7 @@ class World
 
   private:
     Localisation localisation;
+    std::unique_ptr<CharacterCollection> characters;
     std::unique_ptr<CultureCollection> cultures;
     std::unique_ptr<ProvinceCollection> provinces;
     std::unique_ptr<TitleCollection> titles;

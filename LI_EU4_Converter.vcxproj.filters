@@ -29,6 +29,10 @@
     <ClCompile Include="EU4_SettledProvince.cpp" />
     <ClCompile Include="EU4_Province.cpp" />
     <ClCompile Include="EU4_EmptyProvince.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="CK2_Character.cpp" />
+    <ClCompile Include="CK2_CharacterCollection.cpp" />
+    <ClCompile Include="EU4_Ruler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU4_Country.h" />
@@ -59,5 +63,9 @@
     <ClInclude Include="EU4_EmptyProvince.h" />
     <ClInclude Include="EU4_SettledProvince.h" />
     <ClInclude Include="EU4_Province.h" />
+    <ClInclude Include="CK2_Character.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="CK2_CharacterCollection.h" />
+    <ClInclude Include="EU4_Ruler.h" />
   </ItemGroup>
 </Project>

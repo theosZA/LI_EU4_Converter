@@ -33,6 +33,12 @@ World::World(const std::string& ck2Path, const std::string& saveFileName, const 
     throw std::runtime_error("Failed to find provinces entry in save game file");
   provinces.reset(new CK2::ProvinceCollection(**provinceItem, modSubPath + "\\history\\provinces"));
 
+  LOG(LogLevel::Info) << "Building source characters";
+  auto charactersItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "character"; });
+  if (charactersItem == saveItems.end())
+    throw std::runtime_error("Failed to find character entry in save game file");
+  characters.reset(new CK2::CharacterCollection((*charactersItem)->items));
+
   LOG(LogLevel::Info) << "Building source titles";
   auto titleItem = std::find_if(saveItems.begin(), saveItems.end(), [](const std::unique_ptr<Parser::Item>& item) { return item->key == "title"; });
   if (titleItem == saveItems.end())

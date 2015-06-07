@@ -7,6 +7,7 @@
 #include "LI_EU4_TitleCountryMapping.h"
 
 namespace CK2 {
+class CharacterCollection;
 class TitleCollection;
 } // CK2
 
@@ -19,7 +20,7 @@ class CountryCollection
     // Creates an EU4 collection of countries from the top-level titles
     // in the CK2 title collection. The mapping from CK2 titles to EU4 countries
     // is written to the provided TitleCountryMapping.
-    CountryCollection(const CK2::TitleCollection&);
+    CountryCollection(const CK2::TitleCollection&, const CK2::CharacterCollection&);
 
     const Country& GetCountry(const std::string& countryTag) const;
     Country& GetCountry(const std::string& countryTag);

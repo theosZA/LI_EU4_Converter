@@ -4,8 +4,10 @@
 #include <string>
 
 #include "Colour.h"
+#include "EU4_Ruler.h"
 
 namespace CK2 {
+class CharacterCollection;
 class Title;
 } // CK2
 
@@ -16,7 +18,7 @@ class Country
 {
   public:
     // Creates an EU4 country from a CK2 (top-level) title.
-    Country(const std::string& tag, const CK2::Title&);
+    Country(const std::string& tag, const CK2::Title&, const CK2::CharacterCollection&);
 
     // Returns this country's tag.
     const std::string& GetTag() const { return tag; }
@@ -53,7 +55,8 @@ class Country
     // TBD: religion
     // TBD: primary culture
     // TBD: capital province
-    // TBD: rulers/heirs
+    Ruler ruler;
+    // TBD: rulers/heirs (other than the current ruler)
 };
 
 } // namespace EU4
