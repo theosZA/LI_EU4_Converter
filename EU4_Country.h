@@ -52,8 +52,8 @@ class Country
     // TBD: government
     // TBD: mercantilism
     // TBD: technology group
-    // TBD: religion
-    // TBD: primary culture
+    std::string religion;
+    std::string primaryCulture;
     // TBD: capital province
     Ruler ruler;
     // TBD: rulers/heirs (other than the current ruler)

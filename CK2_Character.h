@@ -30,6 +30,9 @@ class Character
     int GetIntrigue() const;
     int GetLearning() const;
 
+    const std::string& GetReligion() const { return religion; }
+    const std::string& GetCulture() const { return culture; }
+
     friend class EU4::Ruler;
 
   private:

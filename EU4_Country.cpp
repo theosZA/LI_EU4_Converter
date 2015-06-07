@@ -14,6 +14,8 @@ Country::Country(const std::string& tag, const CK2::Title& title, const CK2::Cha
 #endif
   adjective(title.adjective), 
   colour(title.colour),
+  religion(characters.GetCharacter(title.holderID).GetReligion()),
+  primaryCulture(characters.GetCharacter(title.holderID).GetCulture()),
   ruler(characters.GetCharacter(title.holderID))
 {}
 
@@ -33,8 +35,8 @@ void Country::WriteHistory(std::ostream& out) const
 {
   out << "government = feudal_monarchy\n"
       << "technology_group = western\n"
-      << "religion = catholic\n"
-      << "primary_culture = english\n"
+      << "religion = " << religion << '\n'
+      << "primary_culture = " << primaryCulture << '\n'
       << "capital = 1\n\n";
   ruler.WriteToStream(out);
 }
