@@ -1129,7 +1129,6 @@
 1156=564 # Dhaka
 1157=2046 # Nasirabad
 1158=567 # Silhet
-1160=565 # Bhutan
 1161=2042 # Koch Hajo
 1162=562 # Koch
 1164,1163=2071 # Limbuwan
@@ -1204,11 +1203,91 @@
 1078,1075=572 # Kotte
 1076,1079,1077=2099 # Kandy
 
+# Western Central Asia (Uzbek)
+622=1780 # Komi
+624=1072 # Obdorsk
+625=1080 # Pelym
+625=1073 # Berezov
+626=1074 # Sibir
+627=2428 # Yugan
+628=1071 # Irtesh
+628=2434 # Barnaul
+629=1078 # Tura
+629=2427 # Ostyaki
+629=1075 # Tyumen
+630=2441 # Iglino - LI Chelyaba doesn't map well to EU4 Chelyaba
+630=1076 # Kurgan
+632=2352 # Alty-Kuduk
+644=1970 # Syghnak
+644=440 # Qaraqalpak
+645=455 # Kyzylkum
+1230=2433 # Vah
+1231=2355 # Narym
+1244=477 # Nadym
+1244=2360 # Tobykty
+1245=478 # Argyn
+1245=2354 # Shegendyk
+1245,1562=479 # Kerey
+1246=2358 # Altyn
+1246=2359 # Baganaly
+1246=476 # Kypshak
+1247,1248=456 # Turkestan
+1250,1249=2361 # Dzhaman-Kuduk
+1251,1252=1969 # Sozak
+1253=2363 # Atakent
+1562=2369 # Lower Ishim
+1562=2357 # Aksary
+
+# Eastern Central Asia (Oirat and Chagatai)
+1207,1222=707 # Yumen
+1221,1208=2123 # Qakilik
+1223=713 # Bechbaliq
+1223=2122 # Hami
+1224=714 # Hoboksar
+1225,1227=718 # Kobdo
+1226=2118 # Urzhar - with Chubuchak this is an awkward 2-2 fit; alignment chosen because this is more northerly
+1228=716 # Tannu Uriankhai
+1228=1065 # Kuznetsk
+1229=1066 # Altai Uriankhai
+1230=480 # Pegaya Orda
+1232=2119 # Chubuchak - with Urzhar this is an awkward 2-2 fit
+1233=715 # Urumqi
+1234=2120 # Ili
+1240,1235,1237=461 # Almaty
+1239,1238=2368 # Karamegdan
+
+# Southern Central Asia (Yarkand)
+1210,1209=711 # Qarqan
+1213,1212,1211,1191=710 # Hotan
+1215,1214,1217=2124 # Yarkand
+1216=739 # Kashgar
+1218=712 # Aksu
+1219=2121 # Kuqa
+1220=2192 # Korla
+1236=2125 # Kochkor
+1241=2126 # Chuy
+1242=2364 # Talas
+1243=459 # Taraz
+1260,1258=460 # Uzkend
+1259,1261=2127 # Yashilkul
+
+# Tibet
+1160,1182=565 # Bhutan
+1183,1184,1197=676 # Shigatse
+1195,1185,1192,1186=2128 # Ngari
+1194,1199,1196,1193=2129 # Changtang
+1201,1200=677 # Lhasa
+1202=2130 # Nyingchi
+1205,1203=705 # Gyegu
+1204,1198=2134 # Rebgong
+1206=706 # Tsaidam
+
 # Colonizable provinces
 # ---------------------
 x=350
 x=351
 x=352
+x=367
 x=1145
 x=1152
 x=1153
@@ -1235,3 +1314,17 @@ x=2456
 x=2457
 x=2472
 x=2781
+x=2429
+
+# Provinces removed from Oirat and Ming for a cleaner break between
+# LI central Asia and EU4 east Asia.
+x=708
+x=709
+x=719
+x=2117
+x=2182
+x=2184
+x=2189
+x=2190
+x=2191
+x=2193
